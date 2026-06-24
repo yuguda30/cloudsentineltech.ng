@@ -1,0 +1,2879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Why Use Data — CloudSentinel Technologies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        /* ── TOKENS ── brand blue straight from logo ──────────────── */
+        
+         :root {
+            --blue: #00AAEF;
+            /* logo brand blue                  */
+            --blue-hov: #009DD8;
+            /* slightly deeper for hover        */
+            --blue-lt: #33BBFF;
+            /* lighter tint                     */
+            --blue-pale: #DCF3FD;
+            /* very light background tint       */
+            --blue-mist: #F0FAFF;
+            /* near-white tint                  */
+            --gold: #D4A017;
+            /* warm gold                        */
+            --gold-lt: #F0C040;
+            /* lighter gold / highlights        */
+            --gold-pale: #FEF5D6;
+            /* gold tint background             */
+            --gold-dark: #A07810;
+            /* darker gold for text             */
+            --white: #FFFFFF;
+            --off: #F7FBFF;
+            /* tinted white                     */
+            --text: #0B2032;
+            --text-m: #3A5870;
+            --text-l: #7AA0BB;
+            --border: rgba(0, 170, 239, .15);
+            --border-g: rgba(212, 160, 23, .22);
+            --font-hd: 'Nunito', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --r-xs: 6px;
+            --r-sm: 10px;
+            --r-md: 18px;
+            --r-lg: 28px;
+            --r-xl: 48px;
+            --sh-blue: 0 8px 32px rgba(0, 170, 239, .20);
+            --sh-gold: 0 8px 28px rgba(212, 160, 23, .22);
+            --sh-lg: 0 24px 64px rgba(0, 100, 180, .16);
+            --ease: .32s cubic-bezier(.4, 0, .2, 1);
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--white);
+            color: var(--text);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .wrap {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        /* ── CHIP LABELS ─────────────────────────────────────────── */
+        
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: var(--font-hd);
+            font-size: .7rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            border-radius: 40px;
+            padding: 5px 16px;
+            margin-bottom: 18px;
+        }
+        
+        .chip-blue {
+            background: rgba(0, 170, 239, .12);
+            color: var(--blue-hov);
+            border: 1px solid rgba(0, 170, 239, .3);
+        }
+        
+        .chip-gold {
+            background: rgba(212, 160, 23, .12);
+            color: var(--gold-dark);
+            border: 1px solid var(--border-g);
+        }
+        
+        .chip-white {
+            background: rgba(255, 255, 255, .18);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, .35);
+        }
+        /* ── HEADINGS ────────────────────────────────────────────── */
+        
+        .hd {
+            font-family: var(--font-hd);
+            font-size: clamp(1.9rem, 3.8vw, 2.9rem);
+            font-weight: 900;
+            line-height: 1.12;
+            color: var(--text);
+        }
+        
+        .hd em {
+            font-style: italic;
+            font-weight: 800;
+            color: var(--blue);
+        }
+        
+        .hd-wh {
+            color: var(--white);
+        }
+        
+        .hd-wh em {
+            color: var(--gold-lt);
+        }
+        
+        .sub {
+            font-size: .96rem;
+            color: var(--text-m);
+            line-height: 1.8;
+            margin-top: 13px;
+            max-width: 570px;
+        }
+        /* ── BUTTONS ─────────────────────────────────────────────── */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border-radius: var(--r-sm);
+            font-family: var(--font-body);
+            font-size: .9rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--ease);
+        }
+        
+        .btn-blue {
+            background: var(--blue);
+            color: var(--white);
+        }
+        
+        .btn-blue:hover {
+            background: var(--blue-hov);
+            transform: translateY(-2px);
+            box-shadow: var(--sh-blue);
+        }
+        
+        .btn-gold {
+            background: var(--gold);
+            color: var(--white);
+        }
+        
+        .btn-gold:hover {
+            background: var(--gold-lt);
+            color: var(--text);
+            transform: translateY(-2px);
+            box-shadow: var(--sh-gold);
+        }
+        
+        .btn-wh {
+            background: var(--white);
+            color: var(--blue);
+        }
+        
+        .btn-wh:hover {
+            background: var(--blue-pale);
+            transform: translateY(-2px);
+        }
+        
+        .btn-ol-wh {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, .5);
+        }
+        
+        .btn-ol-wh:hover {
+            background: rgba(255, 255, 255, .15);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        .btn-ol-blue {
+            background: transparent;
+            color: var(--blue);
+            border: 2px solid var(--blue);
+        }
+        
+        .btn-ol-blue:hover {
+            background: var(--blue);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        /* ── REVEAL ──────────────────────────────────────────────── */
+        
+        .rv {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .58s ease, transform .58s ease;
+        }
+        
+        .rv.on {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .d1 {
+            transition-delay: .07s
+        }
+        
+        .d2 {
+            transition-delay: .14s
+        }
+        
+        .d3 {
+            transition-delay: .21s
+        }
+        
+        .d4 {
+            transition-delay: .28s
+        }
+        
+        .d5 {
+            transition-delay: .35s
+        }
+        
+        .d6 {
+            transition-delay: .42s
+        }
+        /* ── NAVBAR ──────────────────────────────────────────────── */
+        
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: var(--blue);
+            padding: 0;
+            box-shadow: 0 2px 20px rgba(0, 170, 239, .3);
+            transition: var(--ease);
+        }
+        
+        .nav-bar {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            height: 60px;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 24px;
+            font-family: var(--font-hd);
+            font-weight: 900;
+            font-size: 1.05rem;
+            color: var(--white);
+            border-right: 1px solid rgba(255, 255, 255, .15);
+        }
+        
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+            background: var(--white);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--blue);
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            list-style: none;
+        }
+        
+        .nav-links li a {
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            font-size: .83rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .8);
+            border-right: 1px solid rgba(255, 255, 255, .1);
+            transition: background .2s, color .2s;
+        }
+        
+        .nav-links li a:hover {
+            background: rgba(255, 255, 255, .12);
+            color: var(--white);
+        }
+        
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 18px;
+            border-left: 1px solid rgba(255, 255, 255, .15);
+        }
+        
+        .nav-cta .btn {
+            padding: 8px 16px;
+            font-size: .81rem;
+        }
+        /* ── HERO ────────────────────────────────────────────────── */
+        
+        .hero {
+            background: var(--blue);
+            min-height: 100vh;
+            padding-top: 60px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+        /* Subtle circle pattern on blue */
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, .08) 1.5px, transparent 1.5px);
+            background-size: 36px 36px;
+        }
+        /* Gold accent glow */
+        
+        .hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 160, 23, .18), transparent 70%);
+            bottom: -120px;
+            right: -80px;
+            pointer-events: none;
+        }
+        
+        .hero-glow2 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, .07), transparent 70%);
+            top: 40px;
+            left: -60px;
+            pointer-events: none;
+        }
+        
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold-lt);
+            font-family: var(--font-hd);
+            font-size: .73rem;
+            font-weight: 800;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+        
+        .hero-tag::before {
+            content: '';
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--gold-lt);
+        }
+        
+        .hero h1 {
+            font-family: var(--font-hd);
+            font-size: clamp(2.3rem, 5vw, 3.8rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold-lt);
+        }
+        
+        .hero p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, .82);
+            max-width: 470px;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        /* BREADCRUMB hint */
+        
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .55);
+            margin-bottom: 24px;
+        }
+        
+        .breadcrumb span {
+            color: var(--gold-lt);
+            font-weight: 700;
+        }
+        
+        .breadcrumb .sep {
+            opacity: .4;
+        }
+        /* Stats strip */
+        
+        .hero-stats {
+            position: relative;
+            z-index: 2;
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, .18);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .hst {}
+        
+        .hst-val {
+            font-family: var(--font-hd);
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--gold-lt);
+            line-height: 1;
+        }
+        
+        .hst-lbl {
+            font-size: .77rem;
+            color: rgba(255, 255, 255, .6);
+            margin-top: 5px;
+        }
+        /* ── DASHBOARD WIDGET ────────────────────────────────────── */
+        
+        .dash-widget {
+            background: var(--white);
+            border-radius: var(--r-lg);
+            box-shadow: 0 32px 80px rgba(0, 0, 0, .18), 0 0 0 1px rgba(255, 255, 255, .2);
+            overflow: hidden;
+        }
+        
+        .dw-bar {
+            background: var(--off);
+            padding: 11px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .dw-dots {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .dw-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+        
+        .dt-r {
+            background: #FF5F57
+        }
+        
+        .dt-y {
+            background: #FEBC2E
+        }
+        
+        .dt-g {
+            background: #28C840
+        }
+        
+        .dw-title {
+            font-family: var(--font-hd);
+            font-size: .78rem;
+            font-weight: 800;
+            color: var(--text-m);
+        }
+        
+        .dw-live {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .67rem;
+            color: #22C55E;
+            font-weight: 700;
+        }
+        
+        .dw-live::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22C55E;
+            animation: blink 1.4s ease-in-out infinite;
+        }
+        
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1
+            }
+            50% {
+                opacity: .3
+            }
+        }
+        
+        .dw-body {
+            padding: 18px;
+        }
+        /* KPI row */
+        
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        
+        .kpi {
+            background: var(--off);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            padding: 12px 14px;
+        }
+        
+        .kpi-l {
+            font-size: .62rem;
+            color: var(--text-l);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-bottom: 3px;
+        }
+        
+        .kpi-v {
+            font-family: var(--font-hd);
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: var(--text);
+        }
+        
+        .kpi-t {
+            font-size: .62rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+        
+        .kup {
+            color: #22C55E
+        }
+        
+        .kdn {
+            color: #EF4444
+        }
+        /* bar chart */
+        
+        .bc-wrap {
+            background: var(--off);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+        
+        .bc-title {
+            font-size: .62rem;
+            font-weight: 600;
+            color: var(--text-l);
+            text-transform: uppercase;
+            letter-spacing: .09em;
+            margin-bottom: 10px;
+        }
+        
+        .bc-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 7px;
+            height: 68px;
+        }
+        
+        .bc-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            height: 100%;
+            justify-content: flex-end;
+        }
+        
+        .bc-bar {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            animation: grow .9s cubic-bezier(.4, 0, .2, 1) forwards;
+        }
+        
+        .bc-bar.bb {
+            background: linear-gradient(180deg, var(--blue-lt), var(--blue));
+        }
+        
+        .bc-bar.bg {
+            background: linear-gradient(180deg, var(--gold-lt), var(--gold));
+        }
+        
+        @keyframes grow {
+            to {
+                transform: scaleY(1)
+            }
+        }
+        
+        .bc-lbl {
+            font-size: .55rem;
+            color: var(--text-l);
+        }
+        /* mini bottom row */
+        
+        .dw-row2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .dw-mini {
+            background: var(--off);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            padding: 11px 14px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+        
+        .dw-mini-icon {
+            font-size: 1.1rem;
+        }
+        
+        .dw-mini-lbl {
+            font-size: .6rem;
+            color: var(--text-l);
+        }
+        
+        .dw-mini-val {
+            font-family: var(--font-hd);
+            font-size: .8rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+        /* ── SECTION COMMON ──────────────────────────────────────── */
+        
+        section {
+            padding: 88px 0;
+        }
+        /* ── PROBLEM ─────────────────────────────────────────────── */
+        
+        .problem {
+            background: var(--white);
+        }
+        
+        .prob-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: center;
+            margin-top: 52px;
+        }
+        
+        .prob-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        
+        .prob-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: var(--off);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--blue);
+            border-radius: 0 var(--r-sm) var(--r-sm) 0;
+            padding: 16px 18px;
+            transition: var(--ease);
+        }
+        
+        .prob-item:hover {
+            background: var(--blue-pale);
+            transform: translateX(6px);
+        }
+        
+        .prob-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .prob-item h4 {
+            font-weight: 700;
+            color: var(--text);
+            font-size: .92rem;
+            margin-bottom: 3px;
+        }
+        
+        .prob-item p {
+            font-size: .82rem;
+            color: var(--text-m);
+            line-height: 1.7;
+        }
+        
+        .prob-right {}
+        
+        .prob-right h3 {
+            font-family: var(--font-hd);
+            font-size: 1.55rem;
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+        
+        .prob-right h3 em {
+            color: var(--blue);
+            font-style: italic;
+        }
+        
+        .prob-right p {
+            font-size: .93rem;
+            color: var(--text-m);
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+        
+        .callout {
+            background: var(--gold-pale);
+            border: 1px solid var(--border-g);
+            border-left: 4px solid var(--gold);
+            border-radius: 0 var(--r-sm) var(--r-sm) 0;
+            padding: 16px 18px;
+            margin-top: 20px;
+        }
+        
+        .callout p {
+            font-size: .88rem;
+            font-weight: 600;
+            color: var(--gold-dark);
+            margin: 0;
+        }
+        /* ── WHY DATA ─────────────────────────────────────────────── */
+        
+        .why {
+            background: var(--blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .why::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, .07) 1.5px, transparent 1.5px);
+            background-size: 32px 32px;
+        }
+        
+        .why-inner {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .why-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        
+        .why-header .sub {
+            color: rgba(255, 255, 255, .72);
+            margin: 0 auto;
+            margin-top: 14px;
+            text-align: center;
+        }
+        
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .why-card {
+            background: rgba(255, 255, 255, .10);
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: var(--r-md);
+            padding: 32px 22px;
+            text-align: center;
+            transition: var(--ease);
+            backdrop-filter: blur(6px);
+        }
+        
+        .why-card:hover {
+            background: rgba(255, 255, 255, .18);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .2);
+            border-color: rgba(212, 160, 23, .5);
+        }
+        
+        .why-n {
+            font-family: var(--font-hd);
+            font-size: 2.4rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, .12);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+        
+        .why-icon {
+            font-size: 2.2rem;
+            margin-bottom: 14px;
+            display: block;
+        }
+        
+        .why-card h4 {
+            font-family: var(--font-hd);
+            font-weight: 800;
+            color: var(--white);
+            font-size: .95rem;
+            margin-bottom: 10px;
+        }
+        
+        .why-card p {
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .68);
+            line-height: 1.75;
+        }
+        /* ── DDM (What is data-driven) ───────────────────────────── */
+        
+        .ddm {
+            background: var(--white);
+        }
+        
+        .ddm-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: center;
+            margin-top: 52px;
+        }
+        
+        .ddm-steps {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .ddm-step {
+            display: flex;
+            gap: 18px;
+            padding-bottom: 26px;
+            position: relative;
+        }
+        
+        .ddm-step:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 17px;
+            top: 40px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(var(--blue), transparent);
+        }
+        
+        .ddm-num {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-hd);
+            font-weight: 900;
+            font-size: .88rem;
+            z-index: 1;
+        }
+        
+        .ddm-step h4 {
+            font-family: var(--font-hd);
+            font-weight: 800;
+            color: var(--text);
+            font-size: .93rem;
+            margin-bottom: 4px;
+        }
+        
+        .ddm-step p {
+            font-size: .83rem;
+            color: var(--text-m);
+            line-height: 1.75;
+        }
+        
+        .ddm-visual {
+            background: var(--blue);
+            border-radius: var(--r-lg);
+            padding: 44px 38px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ddm-visual::after {
+            content: '📊';
+            position: absolute;
+            right: -20px;
+            bottom: -20px;
+            font-size: 12rem;
+            opacity: .06;
+            line-height: 1;
+        }
+        
+        .ddm-visual h3 {
+            font-family: var(--font-hd);
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 14px;
+            line-height: 1.2;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .ddm-visual h3 em {
+            font-style: italic;
+            color: var(--gold-lt);
+        }
+        
+        .ddm-visual p {
+            color: rgba(255, 255, 255, .75);
+            font-size: .88rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 14px;
+        }
+        
+        .cmp {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cmp-box {
+            border-radius: var(--r-xs);
+            padding: 14px 16px;
+        }
+        
+        .cmp-no {
+            background: rgba(239, 68, 68, .14);
+            border: 1px solid rgba(239, 68, 68, .3);
+        }
+        
+        .cmp-yes {
+            background: rgba(212, 160, 23, .14);
+            border: 1px solid rgba(212, 160, 23, .3);
+        }
+        
+        .cmp-lbl {
+            font-size: .65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .09em;
+            margin-bottom: 5px;
+        }
+        
+        .cmp-no .cmp-lbl {
+            color: #f87171;
+        }
+        
+        .cmp-yes .cmp-lbl {
+            color: var(--gold-lt);
+        }
+        
+        .cmp-box p {
+            font-size: .78rem;
+            color: rgba(255, 255, 255, .72);
+            line-height: 1.65;
+        }
+        /* ── TOOLS ───────────────────────────────────────────────── */
+        
+        .tools {
+            background: var(--off);
+        }
+        
+        .tools-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        
+        .tools-header .sub {
+            margin: 0 auto;
+            margin-top: 14px;
+            text-align: center;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+        
+        .tool {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r-md);
+            padding: 34px 24px;
+            transition: var(--ease);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .3s;
+        }
+        
+        .tool:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .tool:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--sh-lg);
+            border-color: rgba(0, 170, 239, .25);
+        }
+        
+        .tool-ico {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        
+        .ti-g {
+            background: rgba(34, 197, 94, .12);
+        }
+        
+        .ti-b {
+            background: rgba(0, 170, 239, .12);
+        }
+        
+        .ti-o {
+            background: rgba(249, 115, 22, .12);
+        }
+        
+        .ti-r {
+            background: rgba(239, 68, 68, .10);
+        }
+        
+        .tool h4 {
+            font-family: var(--font-hd);
+            font-weight: 800;
+            color: var(--text);
+            font-size: .96rem;
+            margin-bottom: 5px;
+        }
+        
+        .tool .use {
+            font-size: .7rem;
+            font-weight: 700;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-bottom: 10px;
+        }
+        
+        .tool p {
+            font-size: .83rem;
+            color: var(--text-m);
+            line-height: 1.75;
+        }
+        /* ── SCENARIOS ───────────────────────────────────────────── */
+        
+        .scenarios {
+            background: var(--white);
+        }
+        
+        .sc-header {
+            margin-bottom: 52px;
+        }
+        
+        .sc-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .sc {
+            border-radius: var(--r-md);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--ease);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sc:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--sh-lg);
+        }
+        
+        .sc-top {
+            background: var(--blue);
+            padding: 20px 22px;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+        
+        .sc-emo {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        
+        .sc-top h4 {
+            font-family: var(--font-hd);
+            font-size: .9rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.3;
+        }
+        
+        .sc-body {
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            flex: 1;
+            background: var(--off);
+        }
+        
+        .sc-bef,
+        .sc-aft {
+            border-radius: var(--r-xs);
+            padding: 12px 14px;
+            font-size: .82rem;
+            line-height: 1.7;
+        }
+        
+        .sc-bef {
+            background: #FEE2E2;
+            border-left: 3px solid #EF4444;
+            color: #7F1D1D;
+        }
+        
+        .sc-bef strong {
+            display: block;
+            font-size: .67rem;
+            text-transform: uppercase;
+            letter-spacing: .09em;
+            color: #991B1B;
+            margin-bottom: 3px;
+        }
+        
+        .sc-aft {
+            background: #DCFCE7;
+            border-left: 3px solid #22C55E;
+            color: #14532D;
+        }
+        
+        .sc-aft strong {
+            display: block;
+            font-size: .67rem;
+            text-transform: uppercase;
+            letter-spacing: .09em;
+            color: #166534;
+            margin-bottom: 3px;
+        }
+        
+        .sc-arr {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--blue);
+            font-weight: 700;
+        }
+        /* ── BENEFITS ────────────────────────────────────────────── */
+        
+        .benefits {
+            background: var(--gold-pale);
+            position: relative;
+        }
+        
+        .benefits::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(212, 160, 23, .15) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+        
+        .ben-inner {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .ben-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        
+        .ben-header .hd em {
+            color: var(--gold-dark);
+        }
+        
+        .ben-header .sub {
+            margin: 0 auto;
+            margin-top: 14px;
+            text-align: center;
+        }
+        
+        .ben-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .ben {
+            background: var(--white);
+            border: 1px solid var(--border-g);
+            border-radius: var(--r-md);
+            padding: 30px 26px;
+            transition: var(--ease);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ben::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .3s;
+        }
+        
+        .ben:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .ben:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sh-gold);
+        }
+        
+        .ben-ico {
+            font-size: 1.9rem;
+            margin-bottom: 14px;
+        }
+        
+        .ben h4 {
+            font-family: var(--font-hd);
+            font-weight: 800;
+            color: var(--text);
+            font-size: .95rem;
+            margin-bottom: 8px;
+        }
+        
+        .ben p {
+            font-size: .84rem;
+            color: var(--text-m);
+            line-height: 1.75;
+        }
+        /* ── DASHBOARD SECTION ───────────────────────────────────── */
+        
+        .dashsec {
+            background: var(--white);
+        }
+        
+        .dash-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: center;
+            margin-top: 52px;
+        }
+        
+        .dash-txt h3 {
+            font-family: var(--font-hd);
+            font-size: 1.55rem;
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+        
+        .dash-txt h3 em {
+            color: var(--blue);
+            font-style: italic;
+        }
+        
+        .dash-txt p {
+            font-size: .92rem;
+            color: var(--text-m);
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+        
+        .dash-feats {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            margin-top: 22px;
+        }
+        
+        .df {
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+            background: var(--blue-mist);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            padding: 13px 17px;
+            transition: var(--ease);
+        }
+        
+        .df:hover {
+            background: var(--blue-pale);
+            border-color: rgba(0, 170, 239, .3);
+            transform: translateX(4px);
+        }
+        
+        .df-ico {
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+        
+        .df h5 {
+            font-weight: 700;
+            color: var(--text);
+            font-size: .88rem;
+            margin-bottom: 2px;
+        }
+        
+        .df p {
+            font-size: .8rem;
+            color: var(--text-m);
+            line-height: 1.6;
+        }
+        /* Full dashboard mock */
+        
+        .full-dash {
+            background: var(--off);
+            border: 1px solid var(--border);
+            border-radius: var(--r-lg);
+            overflow: hidden;
+            box-shadow: var(--sh-lg);
+        }
+        
+        .fd-bar {
+            background: var(--blue);
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .fd-title {
+            font-family: var(--font-hd);
+            font-size: .8rem;
+            font-weight: 800;
+            color: var(--white);
+        }
+        
+        .fd-date {
+            font-size: .67rem;
+            color: rgba(255, 255, 255, .65);
+        }
+        
+        .fd-body {
+            padding: 18px;
+        }
+        
+        .fd-kpis {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        
+        .fd-kpi {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            padding: 13px 15px;
+        }
+        
+        .fdk-l {
+            font-size: .62rem;
+            color: var(--text-l);
+            text-transform: uppercase;
+            letter-spacing: .09em;
+            margin-bottom: 3px;
+        }
+        
+        .fdk-v {
+            font-family: var(--font-hd);
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--text);
+        }
+        
+        .fdk-t {
+            font-size: .65rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+        
+        .fdk-u {
+            color: #22C55E;
+        }
+        
+        .fdk-d {
+            color: #EF4444;
+        }
+        /* large bar chart */
+        
+        .fd-chart {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+        
+        .fd-ct {
+            font-size: .67rem;
+            font-weight: 700;
+            color: var(--text-l);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            margin-bottom: 10px;
+        }
+        
+        .fd-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 5px;
+            height: 76px;
+        }
+        
+        .fd-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            height: 100%;
+            justify-content: flex-end;
+        }
+        
+        .fd-bar {
+            width: 100%;
+            border-radius: 3px 3px 0 0;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            animation: grow 1.1s cubic-bezier(.4, 0, .2, 1) forwards;
+        }
+        
+        .fd-bar.fb {
+            background: linear-gradient(180deg, var(--blue-lt), var(--blue));
+        }
+        
+        .fd-bar.fg {
+            background: linear-gradient(180deg, var(--gold-lt), var(--gold));
+        }
+        
+        .fd-m {
+            font-size: .56rem;
+            color: var(--text-l);
+        }
+        /* bottom row */
+        
+        .fd-bot {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .fd-donut {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            padding: 13px;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+        
+        .dring {
+            position: relative;
+            width: 62px;
+            height: 62px;
+            flex-shrink: 0;
+        }
+        
+        .dsvg {
+            width: 62px;
+            height: 62px;
+            transform: rotate(-90deg);
+        }
+        
+        .dbg {
+            fill: none;
+            stroke: var(--off);
+            stroke-width: 7;
+        }
+        
+        .dpr {
+            fill: none;
+            stroke: var(--blue);
+            stroke-width: 7;
+            stroke-linecap: round;
+            stroke-dasharray: 157;
+            stroke-dashoffset: 49;
+            animation: ddash 1.2s ease forwards;
+        }
+        
+        @keyframes ddash {
+            from {
+                stroke-dashoffset: 157
+            }
+            to {
+                stroke-dashoffset: 49
+            }
+        }
+        
+        .dlbl {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-hd);
+            font-size: .68rem;
+            font-weight: 900;
+            color: var(--blue);
+        }
+        
+        .dinfo h5 {
+            font-family: var(--font-hd);
+            font-size: .78rem;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        
+        .dinfo p {
+            font-size: .68rem;
+            color: var(--text-l);
+        }
+        
+        .fd-act {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--r-sm);
+            padding: 13px;
+        }
+        
+        .fat {
+            font-size: .66rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--text-l);
+            margin-bottom: 9px;
+        }
+        
+        .fa-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+            border-bottom: 1px solid var(--off);
+        }
+        
+        .fa-row:last-child {
+            border-bottom: none;
+        }
+        
+        .fa-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue);
+            flex-shrink: 0;
+        }
+        
+        .fa-name {
+            font-size: .7rem;
+            font-weight: 600;
+            color: var(--text);
+            flex: 1;
+        }
+        
+        .fa-val {
+            font-size: .7rem;
+            color: var(--text-m);
+        }
+        /* ── ROLE ────────────────────────────────────────────────── */
+        
+        .role {
+            background: var(--blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .role::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, .06) 1.5px, transparent 1.5px);
+            background-size: 32px 32px;
+        }
+        
+        .role-inner {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 72px;
+            align-items: center;
+        }
+        
+        .role-left h2 {
+            font-family: var(--font-hd);
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+        
+        .role-left h2 em {
+            font-style: italic;
+            color: var(--gold-lt);
+        }
+        
+        .role-left p {
+            color: rgba(255, 255, 255, .75);
+            font-size: .93rem;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+        
+        .role-svcs {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+        
+        .role-svc {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            background: rgba(255, 255, 255, .10);
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: var(--r-sm);
+            padding: 13px 18px;
+            transition: var(--ease);
+        }
+        
+        .role-svc:hover {
+            background: rgba(255, 255, 255, .18);
+            border-color: rgba(212, 160, 23, .5);
+            transform: translateX(5px);
+        }
+        
+        .role-svc .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold-lt);
+            flex-shrink: 0;
+        }
+        
+        .role-svc span {
+            color: rgba(255, 255, 255, .85);
+            font-size: .88rem;
+            font-weight: 500;
+        }
+        /* right panel */
+        
+        .role-panel {
+            background: var(--white);
+            border-radius: var(--r-lg);
+            padding: 46px 40px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, .2);
+        }
+        
+        .rp-icon {
+            font-size: 3.6rem;
+            margin-bottom: 20px;
+        }
+        
+        .role-panel h3 {
+            font-family: var(--font-hd);
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--text);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        
+        .role-panel h3 em {
+            color: var(--blue);
+            font-style: italic;
+        }
+        
+        .role-panel p {
+            color: var(--text-m);
+            font-size: .88rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        
+        .rp-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        
+        .rp-tag {
+            background: var(--blue-pale);
+            border: 1px solid var(--border);
+            color: var(--blue-hov);
+            border-radius: 40px;
+            padding: 5px 14px;
+            font-size: .76rem;
+            font-weight: 700;
+        }
+        /* ── FINAL CTA ───────────────────────────────────────────── */
+        
+        .finalcta {
+            background: var(--white);
+            position: relative;
+            text-align: center;
+            padding: 100px 0;
+        }
+        /* gold stripe top */
+        
+        .finalcta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--blue), var(--gold-lt), var(--blue));
+        }
+        
+        .fct {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        
+        .fct .chip {
+            margin-bottom: 20px;
+        }
+        
+        .fct h2 {
+            font-family: var(--font-hd);
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        
+        .fct h2 em {
+            font-style: italic;
+            color: var(--blue);
+        }
+        
+        .fct p {
+            color: var(--text-m);
+            font-size: .98rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+        
+        .fct-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        /* ===================================
+   Footer
+   =================================== */
+        
+        .footer {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand {
+            max-width: 320px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo span {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+        
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .footer-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            color: var(--white);
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .footer-link {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            transition: color var(--transition-fast);
+        }
+        
+        .footer-link:hover {
+            color: var(--primary-light);
+        }
+        
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-contact-item svg {
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            color: var(--primary-light);
+            margin-top: 2px;
+        }
+        
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        .footer-legal {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .footer-legal a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            transition: color var(--transition-fast);
+        }
+        
+        .footer-legal a:hover {
+            color: var(--white);
+        }
+        
+        @media (max-width: 968px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-brand {
+                grid-column: span 2;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-brand {
+                grid-column: span 1;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        /* ── RESPONSIVE ──────────────────────────────────────────── */
+        
+        @media(max-width:1000px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+            .dash-widget {
+                display: none;
+            }
+            .prob-grid,
+            .ddm-inner,
+            .dash-inner,
+            .role-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .sc-row {
+                grid-template-columns: 1fr;
+            }
+            .ben-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media(max-width:640px) {
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            .ben-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .hero-btns {
+                flex-direction: column;
+            }
+            .fct-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-in {
+                flex-direction: column;
+                text-align: center;
+            }
+            .cmp {
+                grid-template-columns: 1fr;
+            }
+            .fd-kpis {
+                grid-template-columns: 1fr 1fr;
+            }
+            .fd-bot {
+                grid-template-columns: 1fr;
+            }
+            .nav-cta .btn-ol-wh {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── NAVBAR ──────────────────────────────────────────────────── -->
+    <nav class="nav">
+        <div class="wrap nav-bar">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1zm-1 14l-3-3 1.4-1.4L11 12.2l4.6-4.6L17 9l-6 6z"/></svg>
+                </div>
+                CloudSentinel Technologies
+            </div>
+            <ul class="nav-links">
+                <li><a href="#problem">The Problem</a></li>
+                <li><a href="#why">Why Data</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#scenarios">Examples</a></li>
+                <li><a href="#dashsec">Dashboards</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="#finalcta" class="btn btn-ol-wh" style="padding:8px 15px;font-size:.81rem;">Contact</a>
+                <a href="#finalcta" class="btn btn-gold" style="padding:8px 16px;font-size:.81rem;">Get Data Support</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── HERO ────────────────────────────────────────────────────── -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-glow2"></div>
+        <div class="wrap">
+            <div class="hero-inner">
+                <!-- Left copy -->
+                <div>
+                    <div class="breadcrumb rv">
+                        CloudSentinel <span class="sep">/</span> Resources <span class="sep">/</span> <span>Why Use Data</span>
+                    </div>
+                    <div class="hero-tag rv d1">Data Intelligence for SMEs &amp; NGOs</div>
+                    <h1 class="rv d2">Make Better Decisions<br>with the <em>Right Data.</em></h1>
+                    <p class="rv d3">Turn your business and project data into clear insights, better decisions, and measurable growth — no data science degree required.</p>
+                    <div class="hero-btns rv d4">
+                        <a href="#role" class="btn btn-wh">Get Data Support &rarr;</a>
+                        <a href="#finalcta" class="btn btn-ol-wh">Talk to an Expert</a>
+                    </div>
+                    <div class="hero-stats rv d5">
+                        <div class="hst">
+                            <div class="hst-val">70%</div>
+                            <div class="hst-lbl">of SME failures linked to poor financial tracking</div>
+                        </div>
+                        <div class="hst">
+                            <div class="hst-val">3×</div>
+                            <div class="hst-lbl">faster growth for data-driven businesses</div>
+                        </div>
+                        <div class="hst">
+                            <div class="hst-val">85%</div>
+                            <div class="hst-lbl">of NGO delays caused by manual data collection</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right — live dashboard widget -->
+                <div class="rv d3">
+                    <div class="dash-widget">
+                        <div class="dw-bar">
+                            <div class="dw-dots">
+                                <div class="dw-dot dt-r"></div>
+                                <div class="dw-dot dt-y"></div>
+                                <div class="dw-dot dt-g"></div>
+                            </div>
+                            <div class="dw-title">📊 Analytics Dashboard</div>
+                            <div class="dw-live">Live</div>
+                        </div>
+                        <div class="dw-body">
+                            <div class="kpi-row">
+                                <div class="kpi">
+                                    <div class="kpi-l">Revenue</div>
+                                    <div class="kpi-v">₦2.4M</div>
+                                    <div class="kpi-t kup">▲ 18%</div>
+                                </div>
+                                <div class="kpi">
+                                    <div class="kpi-l">Clients</div>
+                                    <div class="kpi-v">348</div>
+                                    <div class="kpi-t kup">▲ 24 new</div>
+                                </div>
+                                <div class="kpi">
+                                    <div class="kpi-l">Expenses</div>
+                                    <div class="kpi-v">₦940K</div>
+                                    <div class="kpi-t kdn">▼ 5%</div>
+                                </div>
+                            </div>
+                            <div class="bc-wrap">
+                                <div class="bc-title">Monthly Revenue (₦)</div>
+                                <div class="bc-bars">
+                                    <div class="bc-col">
+                                        <div class="bc-bar bb" style="height:45%;animation-delay:.3s"></div>
+                                        <div class="bc-lbl">Jan</div>
+                                    </div>
+                                    <div class="bc-col">
+                                        <div class="bc-bar bb" style="height:62%;animation-delay:.4s"></div>
+                                        <div class="bc-lbl">Feb</div>
+                                    </div>
+                                    <div class="bc-col">
+                                        <div class="bc-bar bb" style="height:40%;animation-delay:.5s"></div>
+                                        <div class="bc-lbl">Mar</div>
+                                    </div>
+                                    <div class="bc-col">
+                                        <div class="bc-bar bg" style="height:74%;animation-delay:.6s"></div>
+                                        <div class="bc-lbl">Apr</div>
+                                    </div>
+                                    <div class="bc-col">
+                                        <div class="bc-bar bb" style="height:58%;animation-delay:.7s"></div>
+                                        <div class="bc-lbl">May</div>
+                                    </div>
+                                    <div class="bc-col">
+                                        <div class="bc-bar bg" style="height:90%;animation-delay:.8s"></div>
+                                        <div class="bc-lbl">Jun</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dw-row2">
+                                <div class="dw-mini">
+                                    <div class="dw-mini-icon">📄</div>
+                                    <div>
+                                        <div class="dw-mini-lbl">Reports this week</div>
+                                        <div class="dw-mini-val">12 generated</div>
+                                    </div>
+                                </div>
+                                <div class="dw-mini">
+                                    <div class="dw-mini-icon">⚡</div>
+                                    <div>
+                                        <div class="dw-mini-lbl">Data accuracy</div>
+                                        <div class="dw-mini-val">97.3%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PROBLEM ──────────────────────────────────────────────────── -->
+    <section class="problem" id="problem">
+        <div class="wrap">
+            <div class="rv">
+                <div class="chip chip-blue">The Data Challenge</div>
+                <h2 class="hd">Are You Running Your Business <em>Blind?</em></h2>
+            </div>
+            <div class="prob-grid">
+                <div class="prob-list">
+                    <div class="prob-item rv d1">
+                        <div class="prob-icon">📓</div>
+                        <div>
+                            <h4>No Clear Business Records</h4>
+                            <p>When records live in notebooks and memories, gaps appear and costly mistakes multiply silently over time.</p>
+                        </div>
+                    </div>
+                    <div class="prob-item rv d2">
+                        <div class="prob-icon">🎲</div>
+                        <div>
+                            <h4>Decisions Based on Guesswork</h4>
+                            <p>Without real numbers, critical choices are made on feeling alone — and businesses often pay a heavy price later.</p>
+                        </div>
+                    </div>
+                    <div class="prob-item rv d3">
+                        <div class="prob-icon">💸</div>
+                        <div>
+                            <h4>No Clear Income &amp; Expense Tracking</h4>
+                            <p>Money comes in, money goes out — but exactly where? Without tracking, profit becomes a mystery every month.</p>
+                        </div>
+                    </div>
+                    <div class="prob-item rv d4">
+                        <div class="prob-icon">📄</div>
+                        <div>
+                            <h4>Inaccurate or Delayed Reports</h4>
+                            <p>For NGOs, slow and error-filled reports damage credibility with donors and partners who demand accountability.</p>
+                        </div>
+                    </div>
+                    <div class="prob-item rv d5">
+                        <div class="prob-icon">📉</div>
+                        <div>
+                            <h4>No Way to Measure Performance</h4>
+                            <p>If you cannot measure it, you cannot improve it. Businesses without data repeat the same mistakes every quarter.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="prob-right rv d2">
+                    <h3>Flying without instruments is <em>dangerous</em> — in planes and in business.</h3>
+                    <p>Every successful business runs on information. Knowing what is selling, what is costing you, who your best customers are, and where your money is going — these are survival skills, not luxuries.</p>
+                    <p>Many Nigerian SMEs and NGOs make critical decisions every day with incomplete or inaccurate information. The result is wasted resources, missed opportunities, and slow — or reversed — growth.</p>
+                    <p>The solution does not require a data team or expensive software. It starts with collecting the right information, in the right way, and using it consistently to guide your choices.</p>
+                    <div class="callout">
+                        <p>💡 You already have data — transactions, stock records, customer history, project results. The question is whether it is organised and actively working for you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── WHY DATA MATTERS ─────────────────────────────────────────── -->
+    <section class="why" id="why">
+        <div class="wrap why-inner">
+            <div class="why-header rv">
+                <div class="chip chip-white">Why Use Data</div>
+                <h2 class="hd hd-wh">Data Is Your Most <em>Powerful</em> Business Tool</h2>
+                <p class="sub">When you know your numbers, you control your outcomes. Here is what good data does for any business or NGO.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card rv d1">
+                    <div class="why-n">01</div><span class="why-icon">🧠</span>
+                    <h4>Understand Your Business</h4>
+                    <p>Data shows what is actually happening — not what you think is happening. That gap can mean the difference between profit and loss.</p>
+                </div>
+                <div class="why-card rv d2">
+                    <div class="why-n">02</div><span class="why-icon">🎯</span>
+                    <h4>Make Better Decisions</h4>
+                    <p>Stop guessing. With real figures in front of you, every decision — what to stock, where to spend, when to hire — becomes confident and accurate.</p>
+                </div>
+                <div class="why-card rv d3">
+                    <div class="why-n">03</div><span class="why-icon">📈</span>
+                    <h4>Track Your Performance</h4>
+                    <p>Set targets and measure progress against them. Know when you are on track and catch problems early before they become expensive.</p>
+                </div>
+                <div class="why-card rv d4">
+                    <div class="why-n">04</div><span class="why-icon">🚀</span>
+                    <h4>Grow Faster</h4>
+                    <p>Businesses that use data consistently outperform those that do not. Data reveals opportunities that guesswork misses entirely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── DATA-DRIVEN ──────────────────────────────────────────────── -->
+    <section class="ddm" id="ddm">
+        <div class="wrap">
+            <div class="rv">
+                <div class="chip chip-blue">Simple Explanation</div>
+                <h2 class="hd">What <em>Data-Driven</em> Decision Making Really Means</h2>
+                <p class="sub">You do not need to be a data scientist. It simply means using real information — instead of gut feelings alone — to run your business every day.</p>
+            </div>
+            <div class="ddm-inner">
+                <div class="ddm-steps">
+                    <div class="ddm-step rv d1">
+                        <div class="ddm-num">1</div>
+                        <div>
+                            <h4>Collect Real Information</h4>
+                            <p>Record what happens daily — sales, expenses, customer interactions, project activities. Use digital tools to make this automatic and accurate.</p>
+                        </div>
+                    </div>
+                    <div class="ddm-step rv d2">
+                        <div class="ddm-num">2</div>
+                        <div>
+                            <h4>Organise and Clean Your Data</h4>
+                            <p>Raw data needs to be structured and checked before it becomes useful. This means putting it in the right format and removing errors.</p>
+                        </div>
+                    </div>
+                    <div class="ddm-step rv d3">
+                        <div class="ddm-num">3</div>
+                        <div>
+                            <h4>Analyse the Numbers</h4>
+                            <p>Look for patterns, trends, and comparisons. Which products sell best? Which months are slow? Where are costs rising? Numbers tell a story.</p>
+                        </div>
+                    </div>
+                    <div class="ddm-step rv d4">
+                        <div class="ddm-num">4</div>
+                        <div>
+                            <h4>Visualise with Dashboards</h4>
+                            <p>Turn numbers into charts and graphs that anyone can understand at a glance — not just analysts. See your business health in seconds.</p>
+                        </div>
+                    </div>
+                    <div class="ddm-step rv d5">
+                        <div class="ddm-num">5</div>
+                        <div>
+                            <h4>Act on What You Learn</h4>
+                            <p>Use insights to adjust pricing, change strategy, and improve processes. Measure the result, then repeat. That is data-driven management.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ddm-visual rv d2">
+                    <h3>The difference between <em>guessing</em> and knowing.</h3>
+                    <p>Every business owner makes decisions. The question is whether those decisions are guided by evidence or purely by intuition. Both have a role — but only one consistently produces better outcomes over time.</p>
+                    <p>Imagine two traders with similar businesses. One tracks every sale. The other does not. After six months, the one with data knows exactly what to reorder, which customers to focus on, and where money is leaking.</p>
+                    <div class="cmp">
+                        <div class="cmp-box cmp-no">
+                            <div class="cmp-lbl">❌ Without Data</div>
+                            <p>Guessing, wrong stock, missed opportunities, unable to explain results to partners or investors.</p>
+                        </div>
+                        <div class="cmp-box cmp-yes">
+                            <div class="cmp-lbl">✅ With Data</div>
+                            <p>Clear decisions, optimised stock, identified growth areas, professional reports for donors and lenders.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── TOOLS ────────────────────────────────────────────────────── -->
+    <section class="tools" id="tools">
+        <div class="wrap">
+            <div class="tools-header rv">
+                <div class="chip chip-blue">Practical Technology</div>
+                <h2 class="hd">Simple <em>Digital Tools</em> That Do the Heavy Lifting</h2>
+                <p class="sub">You do not need expensive software to start. Here are the most practical tools used by SMEs and NGOs across Africa today.</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool rv d1">
+                    <div class="tool-ico ti-g">📊</div>
+                    <h4>Microsoft Excel</h4>
+                    <div class="use">Records &amp; Calculations</div>
+                    <p>The most widely used data tool in the world. Excel stores, sorts, calculates, and visualises your business data through simple tables and charts. The ideal starting point for any SME.</p>
+                </div>
+                <div class="tool rv d2">
+                    <div class="tool-ico ti-b">📉</div>
+                    <h4>Power BI</h4>
+                    <div class="use">Dashboards &amp; Visuals</div>
+                    <p>Microsoft's free analytics tool turns your spreadsheet data into beautiful, interactive dashboards automatically updated in real time. See your business clearly without building anything manually.</p>
+                </div>
+                <div class="tool rv d3">
+                    <div class="tool-ico ti-o">📱</div>
+                    <h4>ODK / CommCare</h4>
+                    <div class="use">Field Data Collection</div>
+                    <p>Built for NGOs and field teams, these mobile apps replace paper forms entirely. Staff collect data on phones and it flows straight to a central system — no manual entry, no missing forms.</p>
+                </div>
+                <div class="tool rv d4">
+                    <div class="tool-ico ti-r">📋</div>
+                    <h4>Google Forms</h4>
+                    <div class="use">Surveys &amp; Feedback</div>
+                    <p>A completely free tool for collecting structured information online — customer feedback, staff assessments, project monitoring. Responses automatically populate a spreadsheet you can analyse instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SCENARIOS ────────────────────────────────────────────────── -->
+    <section class="scenarios" id="scenarios">
+        <div class="wrap">
+            <div class="sc-header rv">
+                <div class="chip chip-blue">Real-World Examples</div>
+                <h2 class="hd">Businesses That Made the <em>Data Switch</em></h2>
+                <p class="sub">These are realistic scenarios reflecting patterns that many Nigerian businesses experience. Not specific claims — but situations CloudSentinel understands deeply.</p>
+            </div>
+            <div class="sc-row">
+                <div class="sc rv d1">
+                    <div class="sc-top">
+                        <div class="sc-emo">🛍️</div>
+                        <h4>The Shop Owner &amp; Mystery Profits</h4>
+                    </div>
+                    <div class="sc-body">
+                        <div class="sc-bef"><strong>Before</strong>Imagine a business owner who feels sales are strong, but at month-end there is never enough profit to show. She cannot identify where money is going — nothing is tracked systematically.</div>
+                        <div class="sc-arr">↓ Started Tracking Data ↓</div>
+                        <div class="sc-aft"><strong>After</strong>She logs sales and expenses in a simple spreadsheet. Within weeks, two product lines are revealed to be running at a loss. She adjusts pricing and monthly profit improves significantly.</div>
+                    </div>
+                </div>
+                <div class="sc rv d2">
+                    <div class="sc-top">
+                        <div class="sc-emo">🌍</div>
+                        <h4>The NGO &amp; The Delayed Report</h4>
+                    </div>
+                    <div class="sc-body">
+                        <div class="sc-bef"><strong>Before</strong>An NGO's field team collects programme data on paper forms. Compiling reports takes three weeks, errors are frequent, and donors begin questioning the accuracy of submissions.</div>
+                        <div class="sc-arr">↓ Switched to Digital Tools ↓</div>
+                        <div class="sc-aft"><strong>After</strong>The team adopts a mobile data app. Data flows to a central dashboard automatically. Reports are now ready in two days, errors drop sharply, and donor confidence is fully restored.</div>
+                    </div>
+                </div>
+                <div class="sc rv d3">
+                    <div class="sc-top">
+                        <div class="sc-emo">🏫</div>
+                        <h4>The School &amp; The Paper Registers</h4>
+                    </div>
+                    <div class="sc-body">
+                        <div class="sc-bef"><strong>Before</strong>A private school tracks attendance, grades, and fees in handwritten registers. Records regularly go missing, errors are common, and generating termly reports takes weeks of manual effort.</div>
+                        <div class="sc-arr">↓ Adopted Digital System ↓</div>
+                        <div class="sc-aft"><strong>After</strong>A simple school management system is introduced. Attendance is tracked digitally, fee records are always current, and end-of-term reports are generated in hours rather than weeks.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── BENEFITS ─────────────────────────────────────────────────── -->
+    <section class="benefits" id="benefits">
+        <div class="wrap ben-inner">
+            <div class="ben-header rv">
+                <div class="chip chip-gold">What You Gain</div>
+                <h2 class="hd">The Real Benefits of a <em>Data System</em></h2>
+                <p class="sub">When your data is organised and actively working for you, every part of your business or NGO improves.</p>
+            </div>
+            <div class="ben-grid">
+                <div class="ben rv d1">
+                    <div class="ben-ico">🧭</div>
+                    <h4>Better Decision Making</h4>
+                    <p>Replace guesswork with evidence. Know exactly what is working, what is not, and where to focus your energy and resources next month.</p>
+                </div>
+                <div class="ben rv d2">
+                    <div class="ben-ico">✅</div>
+                    <h4>Accurate Reporting</h4>
+                    <p>Generate professional, error-free reports for internal review, donor submission, or regulatory compliance — consistently and quickly.</p>
+                </div>
+                <div class="ben rv d3">
+                    <div class="ben-ico">🔍</div>
+                    <h4>Improved Accountability</h4>
+                    <p>Data creates a transparent, auditable record of activity. Teams know their work is measured. Stakeholders trust what they are told.</p>
+                </div>
+                <div class="ben rv d1">
+                    <div class="ben-ico">⚡</div>
+                    <h4>Faster Operations</h4>
+                    <p>Digital systems remove manual steps, reduce errors, and speed up every process — from stock management to payroll to quarterly reporting.</p>
+                </div>
+                <div class="ben rv d2">
+                    <div class="ben-ico">📈</div>
+                    <h4>Business Growth</h4>
+                    <p>Identify best-performing products, most valuable customers, and biggest cost centres — then act on that knowledge with confidence.</p>
+                </div>
+                <div class="ben rv d3">
+                    <div class="ben-ico">🤝</div>
+                    <h4>Donor Confidence</h4>
+                    <p>For NGOs, clean data and professional reporting is the difference between renewed funding and a lost partnership. Data earns trust.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── DASHBOARDS ───────────────────────────────────────────────── -->
+    <section class="dashsec" id="dashsec">
+        <div class="wrap">
+            <div class="rv">
+                <div class="chip chip-blue">Visualise Everything</div>
+                <h2 class="hd">Dashboards That Make <em>Your Numbers Clear</em></h2>
+            </div>
+            <div class="dash-inner">
+                <div class="dash-txt rv d1">
+                    <h3>Your whole business visible at a single <em>glance.</em></h3>
+                    <p>A dashboard is a visual control panel that shows your most important business numbers in one place — updated in real time. No spreadsheet searching, no manual compilation. Just clarity.</p>
+                    <p>Dashboards can be built for any type of business or project — retail sales tracking, NGO programme monitoring, school management, healthcare data, staff performance, and more.</p>
+                    <div class="dash-feats">
+                        <div class="df">
+                            <div class="df-ico">📊</div>
+                            <div>
+                                <h5>Visual Reports</h5>
+                                <p>Charts and graphs showing trends, comparisons, and performance over time — readable by anyone in your team, not just analysts.</p>
+                            </div>
+                        </div>
+                        <div class="df">
+                            <div class="df-ico">⚡</div>
+                            <div>
+                                <h5>Real-Time Insights</h5>
+                                <p>See updated information as it changes. Know when targets are missed before the month ends — not after.</p>
+                            </div>
+                        </div>
+                        <div class="df">
+                            <div class="df-ico">📱</div>
+                            <div>
+                                <h5>Access Anywhere</h5>
+                                <p>Modern dashboards work on phones, tablets, and computers. Your business intelligence travels with you always.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Full dashboard mockup -->
+                <div class="full-dash rv d2">
+                    <div class="fd-bar">
+                        <div class="fd-title">📊 Business Performance Overview</div>
+                        <div class="fd-date">Q2 2025 · Live</div>
+                    </div>
+                    <div class="fd-body">
+                        <div class="fd-kpis">
+                            <div class="fd-kpi">
+                                <div class="fdk-l">Total Revenue</div>
+                                <div class="fdk-v">₦7.2M</div>
+                                <div class="fdk-t fdk-u">▲ 22% vs Q1</div>
+                            </div>
+                            <div class="fd-kpi">
+                                <div class="fdk-l">Active Clients</div>
+                                <div class="fdk-v">512</div>
+                                <div class="fdk-t fdk-u">▲ 87 new</div>
+                            </div>
+                            <div class="fd-kpi">
+                                <div class="fdk-l">Expenses</div>
+                                <div class="fdk-v">₦2.9M</div>
+                                <div class="fdk-t fdk-d">▼ 8% cut</div>
+                            </div>
+                        </div>
+                        <div class="fd-chart">
+                            <div class="fd-ct">Monthly Revenue vs Expenses</div>
+                            <div class="fd-bars">
+                                <div class="fd-col">
+                                    <div class="fd-bar fb" style="height:52%;animation-delay:.2s"></div>
+                                    <div class="fd-m">R</div>
+                                </div>
+                                <div class="fd-col">
+                                    <div class="fd-bar fg" style="height:33%;animation-delay:.25s"></div>
+                                    <div class="fd-m">E</div>
+                                </div>
+                                <div class="fd-col">
+                                    <div class="fd-bar fb" style="height:65%;animation-delay:.3s"></div>
+                                    <div class="fd-m">R</div>
+                                </div>
+                                <div class="fd-col">
+                                    <div class="fd-bar fg" style="height:38%;animation-delay:.35s"></div>
+                                    <div class="fd-m">E</div>
+                                </div>
+                                <div class="fd-col">
+                                    <div class="fd-bar fb" style="height:48%;animation-delay:.4s"></div>
+                                    <div class="fd-m">R</div>
+                                </div>
+                                <div class="fd-col">
+                                    <div class="fd-bar fg" style="height:30%;animation-delay:.45s"></div>
+                                    <div class="fd-m">E</div>
+                                </div>
+                                <div class="fd-col">
+                                    <div class="fd-bar fb" style="height:80%;animation-delay:.5s"></div>
+                                    <div class="fd-m">R</div>
+                                </div>
+                                <div class="fd-col">
+                                    <div class="fd-bar fg" style="height:36%;animation-delay:.55s"></div>
+                                    <div class="fd-m">E</div>
+                                </div>
+                                <div class="fd-col">
+                                    <div class="fd-bar fb" style="height:70%;animation-delay:.6s"></div>
+                                    <div class="fd-m">R</div>
+                                </div>
+                                <div class="fd-col">
+                                    <div class="fd-bar fg" style="height:34%;animation-delay:.65s"></div>
+                                    <div class="fd-m">E</div>
+                                </div>
+                                <div class="fd-col">
+                                    <div class="fd-bar fb" style="height:95%;animation-delay:.7s"></div>
+                                    <div class="fd-m">R</div>
+                                </div>
+                                <div class="fd-col">
+                                    <div class="fd-bar fg" style="height:40%;animation-delay:.75s"></div>
+                                    <div class="fd-m">E</div>
+                                </div>
+                            </div>
+                            <div style="display:flex;gap:14px;margin-top:7px;">
+                                <div style="display:flex;align-items:center;gap:5px;font-size:.6rem;color:var(--text-l)">
+                                    <div style="width:9px;height:9px;border-radius:2px;background:var(--blue)"></div>Revenue</div>
+                                <div style="display:flex;align-items:center;gap:5px;font-size:.6rem;color:var(--text-l)">
+                                    <div style="width:9px;height:9px;border-radius:2px;background:var(--gold)"></div>Expenses</div>
+                            </div>
+                        </div>
+                        <div class="fd-bot">
+                            <div class="fd-donut">
+                                <div class="dring">
+                                    <svg class="dsvg" viewBox="0 0 64 64"><circle class="dbg" cx="32" cy="32" r="25"/><circle class="dpr" cx="32" cy="32" r="25"/></svg>
+                                    <div class="dlbl">69%</div>
+                                </div>
+                                <div class="dinfo">
+                                    <h5>Target Achieved</h5>
+                                    <p>Q2 revenue goal<br>₦7.2M of ₦10.4M</p>
+                                </div>
+                            </div>
+                            <div class="fd-act">
+                                <div class="fat">Top Products</div>
+                                <div class="fa-row">
+                                    <div class="fa-dot"></div>
+                                    <div class="fa-name">Product A</div>
+                                    <div class="fa-val">₦2.1M</div>
+                                </div>
+                                <div class="fa-row">
+                                    <div class="fa-dot"></div>
+                                    <div class="fa-name">Product B</div>
+                                    <div class="fa-val">₦1.8M</div>
+                                </div>
+                                <div class="fa-row">
+                                    <div class="fa-dot"></div>
+                                    <div class="fa-name">Product C</div>
+                                    <div class="fa-val">₦980K</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CLOUDSENTINEL ROLE ────────────────────────────────────────── -->
+    <section class="role" id="role">
+        <div class="wrap role-inner">
+            <div class="role-left rv">
+                <div class="chip chip-white">Your Data Partner</div>
+                <h2>How <em>CloudSentinel</em> Transforms Your Data Into Growth</h2>
+                <p>We take you from scattered records and guesswork to a clean, organised, insight-generating data system — step by step, at your own pace, in a way your whole team can use.</p>
+                <div class="role-svcs">
+                    <div class="role-svc rv d1">
+                        <div class="dot"></div><span>Set up digital data collection tools suited to your business type</span></div>
+                    <div class="role-svc rv d2">
+                        <div class="dot"></div><span>Organise and clean your existing business and project records</span></div>
+                    <div class="role-svc rv d3">
+                        <div class="dot"></div><span>Analyse your data to surface trends, opportunities, and risks</span></div>
+                    <div class="role-svc rv d4">
+                        <div class="dot"></div><span>Build clear dashboards and visual reports for decision-makers</span></div>
+                    <div class="role-svc rv d5">
+                        <div class="dot"></div><span>Generate donor-ready M&amp;E reports for NGOs and funded projects</span></div>
+                    <div class="role-svc rv d6">
+                        <div class="dot"></div><span>Train your team to maintain and grow the system independently</span></div>
+                </div>
+            </div>
+            <div class="role-panel rv d2">
+                <div class="rp-icon">📊</div>
+                <h3>Start Using Data to <em>Grow</em> Your Business</h3>
+                <p>You do not have to build a data system alone. CloudSentinel's specialists assess your current situation and set up the right tools — quickly, affordably, and in a way your team can actually use from day one.</p>
+                <div class="rp-tags">
+                    <span class="rp-tag">Excel &amp; Power BI</span>
+                    <span class="rp-tag">ODK / CommCare</span>
+                    <span class="rp-tag">M&amp;E Systems</span>
+                    <span class="rp-tag">Dashboard Builds</span>
+                    <span class="rp-tag">Data Training</span>
+                </div>
+                <a href="#finalcta" class="btn btn-blue" style="width:100%;justify-content:center;">Request a Data Consultation &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── FINAL CTA ─────────────────────────────────────────────────── -->
+    <section class="finalcta" id="finalcta">
+        <div class="wrap">
+            <div class="fct">
+                <div class="rv">
+                    <div class="chip chip-blue">Take the First Step</div>
+                </div>
+                <h2 class="rv d1">Stop Guessing.<br>Start Making <em>Informed Decisions.</em></h2>
+                <p class="rv d2">Your competitors are already using data to find opportunities you are missing. Every day without a data system is a day of decisions made in the dark. Let CloudSentinel bring clarity to your business — starting today.</p>
+                <div class="fct-btns rv d3">
+                    <a href="mailto:info@cloudsentinel.ng" class="btn btn-gold" style="padding:15px 36px;font-size:.97rem;">Request Data Consultation &rarr;</a>
+                    <a href="tel:+234000000000" class="btn btn-ol-blue" style="padding:15px 36px;font-size:.97rem;">📞 Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blue%20Illustration%20Cloud%20Business%20Logo_20251208_170044_0000-C7gBRRzGwJYC0VHHKi5ydbqPg0zPj4.png" alt="CloudSentinel Technologies">
+                        <span>CloudSentinel</span>
+                    </div>
+                    <p class="footer-tagline">
+                        Securing Digital Futures Through Compliance, Cybersecurity & Smart Digital Solutions. Your trusted technology partner in Katsina, Nigeria.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+              </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">About Us</a></li>
+                        <li><a href="services.html" class="footer-link">Services</a></li>
+                        <li><a href="projects.html" class="footer-link">Projects</a></li>
+                        <li><a href="use-cases.html" class="footer-link">Use Cases</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#compliance" class="footer-link">Compliance Services</a></li>
+                        <li><a href="services.html#security" class="footer-link">Cybersecurity</a></li>
+                        <li><a href="services.html#data" class="footer-link">Data Analytics</a></li>
+                        <li><a href="services.html#development" class="footer-link">Web Development</a></li>
+                        <li><a href="services.html#ai" class="footer-link">Business AI</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">Contact</h4>
+                    <div class="footer-contact-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+                        <span>cloudsentinelng@gmail.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+                        <span>+234 9060713479<br>+234 8117160515</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+                        <span>Katsina, Katsina State, Nigeria</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 CloudSentinel Technologies. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        /* Scroll reveal */
+        const io = new IntersectionObserver(e => {
+            e.forEach(x => {
+                if (x.isIntersecting) {
+                    x.target.classList.add('on');
+                    io.unobserve(x.target);
+                }
+            });
+        }, {
+            threshold: 0.08
+        });
+        document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+        /* Bar chart re-trigger on scroll */
+        const bcObs = new IntersectionObserver(e => {
+            e.forEach(x => {
+                if (x.isIntersecting) {
+                    x.target.querySelectorAll('.bc-bar,.fd-bar,.bd-bar').forEach(b => {
+                        b.style.animation = 'none';
+                        requestAnimationFrame(() => {
+                            b.style.animation = '';
+                        });
+                    });
+                    bcObs.unobserve(x.target);
+                }
+            });
+        }, {
+            threshold: 0.25
+        });
+        document.querySelectorAll('.bc-bars,.fd-bars').forEach(s => bcObs.observe(s));
+
+        /* Donut re-trigger */
+        const doObs = new IntersectionObserver(e => {
+            e.forEach(x => {
+                if (x.isIntersecting) {
+                    const p = x.target.querySelector('.dpr');
+                    if (p) {
+                        p.style.animation = 'none';
+                        requestAnimationFrame(() => {
+                            p.style.animation = '';
+                        });
+                    }
+                    doObs.unobserve(x.target);
+                }
+            });
+        }, {
+            threshold: 0.25
+        });
+        document.querySelectorAll('.dring').forEach(d => doObs.observe(d));
+    </script>
+</body>
+
+</html>
