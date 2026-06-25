@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Data for Decisions — CloudSentinel Technologies. Learn how SMEs and NGOs can use data and analytics to grow smarter.">
+    <title>Data for Decisions | CloudSentinel Technologies</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        :root {
+            --brand: #00AAEF;
+            --brand-dark: #007EC4;
+            --gold: #C9972B;
+            --gold-lt: #E8B84B;
+            --text: #0B2032;
+            --text-m: #3A5870;
+            --text-l: #7AA0BB;
+            --off: #F5F9FC;
+            --border: rgba(0,170,239,.15);
+        }
+
+        .hub-bar-strip {
+            background: #f0f7fc;
+            border-bottom: 1px solid var(--border);
+            padding: 0.55rem 0;
+            margin-top: 70px;
+        }
+        .hub-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+        .hub-back { display: flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; color: var(--text-l); }
+        .hub-back a { color: var(--brand-dark); text-decoration: none; font-weight: 500; }
+        .hub-back a:hover { color: var(--brand); }
+        .hub-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .hub-pill { font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0.75rem; border-radius: 999px; background: #fff; border: 1px solid rgba(0,170,239,.3); color: var(--brand-dark); text-decoration: none; transition: all 0.2s ease; }
+        .hub-pill:hover, .hub-pill.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+
+        .hub-hero {
+            background: linear-gradient(135deg, #003E6B 0%, #005A9E 50%, #00AAEF 100%);
+            padding: 4.5rem 0 3.5rem; color: #fff; text-align: center;
+        }
+        .hub-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 0.4rem 1rem; font-size: 0.8rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 1.25rem; }
+        .hub-hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+        .hub-hero h1 em { color: var(--gold-lt); font-style: normal; }
+        .hub-hero p { font-size: clamp(1rem, 2.5vw, 1.15rem); color: rgba(255,255,255,.85); max-width: 600px; margin: 0 auto 2rem; }
+        .hub-hero .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-wh { background: #fff; color: var(--brand-dark); font-weight: 600; padding: 0.75rem 1.75rem; border-radius: 8px; text-decoration: none; transition: all .2s; }
+        .btn-wh:hover { background: #e0f5fd; }
+        .btn-ol { border: 2px solid rgba(255,255,255,.5); color: #fff; font-weight: 600; padding: 0.75rem 1.75rem; border-radius: 8px; text-decoration: none; transition: all .2s; }
+        .btn-ol:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+
+        .hub-section { padding: 4rem 0; }
+        .hub-section.alt { background: var(--off); }
+        .hub-section.dark { background: linear-gradient(135deg, #003E6B, #005A9E); color: #fff; }
+
+        .section-label { display: inline-block; background: rgba(0,170,239,.1); color: var(--brand-dark); border: 1px solid var(--border); border-radius: 999px; padding: 0.3rem 0.9rem; font-size: 0.75rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 0.75rem; }
+        .dark .section-label { background: rgba(255,255,255,.12); color: rgba(255,255,255,.8); border-color: rgba(255,255,255,.2); }
+
+        .hub-section h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; color: var(--text); margin-bottom: 0.75rem; line-height: 1.25; }
+        .dark h2 { color: #fff; }
+        .hub-section h2 em { color: var(--brand); font-style: normal; }
+        .dark h2 em { color: var(--gold-lt); }
+        .hub-section .sub { font-size: 1.05rem; color: var(--text-m); max-width: 640px; margin-bottom: 2.5rem; line-height: 1.6; }
+        .dark .sub { color: rgba(255,255,255,.75); }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: box-shadow .25s, transform .25s; }
+        .card:hover { box-shadow: 0 8px 30px rgba(0,170,239,.12); transform: translateY(-3px); }
+        .alt .card { background: #fff; }
+        .card-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(0,170,239,.1); color: var(--brand); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+        .card-icon svg { width: 24px; height: 24px; }
+        .card h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+        .card p { font-size: 0.9rem; color: var(--text-m); line-height: 1.6; }
+
+        /* Gold accent card variant */
+        .card.gold-accent { border-top: 3px solid var(--gold); }
+        .card.gold-accent .card-icon { background: rgba(201,151,43,.1); color: var(--gold); }
+
+        /* Steps layout */
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; counter-reset: steps; }
+        .step-card { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 1.75rem; position: relative; }
+        .step-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.5rem; font-weight: 800; color: rgba(255,255,255,.15); line-height: 1; margin-bottom: 0.5rem; }
+        .step-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+        .step-card p { font-size: 0.875rem; color: rgba(255,255,255,.75); line-height: 1.6; }
+
+        /* Tools table-style cards */
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+        .tool-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; }
+        .tool-icon { font-size: 1.75rem; flex-shrink: 0; }
+        .tool-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+        .tool-card p { font-size: 0.85rem; color: var(--text-m); line-height: 1.5; }
+        .tool-tag { display: inline-block; font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem; border-radius: 4px; background: rgba(0,170,239,.1); color: var(--brand-dark); margin-bottom: 0.4rem; }
+
+        /* Scenario cards with before/after */
+        .scenario-card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; }
+        .scenario-card .org { font-size: 0.8rem; font-weight: 600; color: var(--brand); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 0.75rem; }
+        .scenario-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 1rem; }
+        .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+        .ba-box { border-radius: 8px; padding: 0.75rem; font-size: 0.83rem; line-height: 1.5; }
+        .ba-box.before { background: #fef2f2; color: #7f1d1d; }
+        .ba-box.after { background: #f0fdf4; color: #14532d; }
+        .ba-label { font-weight: 700; display: block; margin-bottom: 0.25rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: .04em; }
+
+        /* Dashboard mockup */
+        .dash-mockup { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 2rem; box-shadow: 0 8px 40px rgba(0,170,239,.1); }
+        .dash-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .kpi { background: var(--off); border-radius: 10px; padding: 1rem; text-align: center; border: 1px solid var(--border); }
+        .kpi-val { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--brand); line-height: 1; }
+        .kpi-lbl { font-size: 0.75rem; color: var(--text-m); margin-top: 0.35rem; }
+        .kpi-delta { font-size: 0.75rem; font-weight: 600; color: #10b981; }
+        .dash-bar-area { }
+        .dash-bar-title { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
+        .bar-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+        .bar-row span { font-size: 0.8rem; color: var(--text-m); width: 70px; flex-shrink: 0; }
+        .bar-track { flex: 1; background: #e1eff8; border-radius: 999px; height: 10px; overflow: hidden; }
+        .bar-fill { height: 100%; border-radius: 999px; }
+        .bar-row em { font-size: 0.8rem; color: var(--text); font-style: normal; font-weight: 600; width: 40px; text-align: right; }
+
+        /* CTA */
+        .cta-section { background: linear-gradient(135deg, #003E6B, #00AAEF); padding: 4rem 0; text-align: center; color: #fff; }
+        .cta-section h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 1rem; }
+        .cta-section h2 em { color: var(--gold-lt); font-style: normal; }
+        .cta-section p { color: rgba(255,255,255,.8); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; font-size: 1.05rem; }
+        .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-gold-solid { background: var(--gold); color: #fff; font-weight: 700; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; transition: all .2s; font-size: 0.95rem; }
+        .btn-gold-solid:hover { background: var(--gold-lt); color: var(--text); }
+        .btn-outline-wh { border: 2px solid rgba(255,255,255,.5); color: #fff; font-weight: 600; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; transition: all .2s; font-size: 0.95rem; }
+        .btn-outline-wh:hover { border-color: #fff; }
+
+        /* Footer */
+        .footer { background: #0D2A3E; color: rgba(255,255,255,.75); padding: 3rem 0 1.5rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 2rem; margin-bottom: 2rem; }
+        .footer-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+        .footer-logo img { height: 40px; width: auto; }
+        .footer-logo span { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: #fff; font-size: 1.1rem; }
+        .footer-tagline { font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.25rem; }
+        .footer-social { display: flex; gap: 0.75rem; }
+        .social-link { width: 36px; height: 36px; background: rgba(255,255,255,.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.7); transition: all .2s; text-decoration: none; }
+        .social-link svg { width: 16px; height: 16px; }
+        .social-link:hover { background: var(--brand); color: #fff; }
+        .footer-title { font-weight: 700; color: #fff; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: .03em; text-transform: uppercase; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-link { color: rgba(255,255,255,.65); text-decoration: none; font-size: 0.875rem; transition: color .2s; }
+        .footer-link:hover { color: var(--brand); }
+        .footer-contact-item { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.75rem; font-size: 0.85rem; }
+        .footer-contact-item svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: .15rem; color: var(--brand); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+        .footer-copyright { font-size: 0.8rem; color: rgba(255,255,255,.5); }
+        .footer-legal { display: flex; gap: 1.5rem; }
+        .footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,.5); text-decoration: none; }
+        .footer-legal a:hover { color: var(--brand); }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .hub-bar-inner { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .before-after { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .hub-bar-strip { display: none; } }
+    </style>
+</head>
+
+<body>
+
+<!-- ── NAVBAR ────────────────────────────────────────────── -->
+<nav class="navbar scrolled" id="mainNav">
+    <div class="container">
+        <a href="index.html" class="nav-logo">
+            <img src="assets/logo.png" alt="CloudSentinel Technologies Logo">
+            <span class="nav-logo-text">CloudSentinel Technologies</span>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="services.html" class="nav-link">Services</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="use-cases.html" class="nav-link">Use Cases</a></li>
+            <li><a href="contact.html" class="btn btn-gold nav-cta">Contact Us</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="nav-overlay"></div>
+</nav>
+
+<!-- Hub breadcrumb bar -->
+<div class="hub-bar-strip">
+    <div class="container hub-bar-inner">
+        <span class="hub-back">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            <a href="index.html#awareness">Knowledge Hub</a>
+        </span>
+        <div class="hub-pills">
+            <a href="cloudsentinel-digitalization.html" class="hub-pill">🚀 Digital Transformation</a>
+            <a href="cloudsentinel-cybersecurity.html" class="hub-pill">🛡️ Cybersecurity</a>
+            <a href="cloudsentinel-data-insights.html" class="hub-pill active">📊 Data Insights</a>
+        </div>
+    </div>
+</div>
+
+<!-- ── HERO ──────────────────────────────────────────────── -->
+<section class="hub-hero">
+    <div class="container">
+        <div class="badge">📊 Data Intelligence for SMEs & NGOs</div>
+        <h1>Make Better Decisions<br>with the <em>Right Data.</em></h1>
+        <p>Turn your business numbers into clear insights, stronger decisions, and measurable growth — no data science degree required.</p>
+        <div class="hero-btns">
+            <a href="#why" class="btn-wh">Why Data Matters →</a>
+            <a href="#tools" class="btn-ol">See the Tools</a>
+        </div>
+    </div>
+</section>
+
+<!-- ── WHY DATA ───────────────────────────────────────────── -->
+<section class="hub-section alt" id="why">
+    <div class="container">
+        <span class="section-label">The Problem</span>
+        <h2>Are You Running Your Business <em>Blind?</em></h2>
+        <p class="sub">Most small businesses rely on memory and gut feeling. When you track and review your numbers, small decisions become smarter — and the difference compounds over time.</p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+                <h3>Know What's Actually Working</h3>
+                <p>Track which products, services, or campaigns bring real revenue — so you invest in what grows, not what feels good.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                <h3>Cut Costs Intelligently</h3>
+                <p>Spot where money is leaking — overstocked items, slow-paying clients, or underused resources — before it becomes a crisis.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></div>
+                <h3>Prove Impact to Funders</h3>
+                <p>NGOs and project teams with clean data reports attract more grants and donor trust than those relying on narrative alone.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+                <h3>Understand Your Customers</h3>
+                <p>Simple purchase patterns reveal what customers want, when they buy, and why they leave — so you can serve them better.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── HOW IT WORKS ───────────────────────────────────────── -->
+<section class="hub-section dark" id="how">
+    <div class="container">
+        <span class="section-label">The Process</span>
+        <h2>What <em>Data-Driven</em> Decision Making Looks Like</h2>
+        <p class="sub">You do not need a full analytics team. You need a simple, consistent system — and someone to set it up for you.</p>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">01</div>
+                <h3>Collect</h3>
+                <p>Capture sales, expenses, customer activity, and project outputs consistently — in a spreadsheet, app, or simple database.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">02</div>
+                <h3>Clean</h3>
+                <p>Remove duplicates, fix errors, and standardise formats so your numbers actually reflect reality.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">03</div>
+                <h3>Analyse</h3>
+                <p>Look for trends, peaks, gaps, and patterns. Even basic averages and totals reveal what is and is not working.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">04</div>
+                <h3>Visualise</h3>
+                <p>Turn numbers into charts and dashboards so the whole team can understand the story at a glance.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">05</div>
+                <h3>Decide</h3>
+                <p>Act on what the data shows — adjust pricing, restock products, reassign staff, or report to donors with confidence.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── TOOLS ─────────────────────────────────────────────── -->
+<section class="hub-section" id="tools">
+    <div class="container">
+        <span class="section-label">Simple Tools</span>
+        <h2>Practical <em>Digital Tools</em> That Do the Heavy Lifting</h2>
+        <p class="sub">These tools are affordable, widely used, and require no technical expertise to start.</p>
+        <div class="tools-grid">
+            <div class="tool-card">
+                <span class="tool-icon">📊</span>
+                <div>
+                    <span class="tool-tag">Spreadsheets</span>
+                    <h3>Google Sheets / Excel</h3>
+                    <p>Track sales, expenses, and inventory. Pivot tables and charts turn raw numbers into useful summaries instantly.</p>
+                </div>
+            </div>
+            <div class="tool-card">
+                <span class="tool-icon">📈</span>
+                <div>
+                    <span class="tool-tag">Dashboards</span>
+                    <h3>Google Looker Studio</h3>
+                    <p>Free dashboard builder that connects to your sheets and shows your KPIs live — great for donor reporting.</p>
+                </div>
+            </div>
+            <div class="tool-card">
+                <span class="tool-icon">🗃️</span>
+                <div>
+                    <span class="tool-tag">Data Collection</span>
+                    <h3>KoboToolbox / Google Forms</h3>
+                    <p>Collect structured field data from customers, beneficiaries, or staff — offline or online.</p>
+                </div>
+            </div>
+            <div class="tool-card">
+                <span class="tool-icon">💼</span>
+                <div>
+                    <span class="tool-tag">Business Intelligence</span>
+                    <h3>Power BI (Free tier)</h3>
+                    <p>Connect multiple data sources and build interactive reports. Ideal for growing businesses ready for the next step.</p>
+                </div>
+            </div>
+            <div class="tool-card">
+                <span class="tool-icon">📱</span>
+                <div>
+                    <span class="tool-tag">POS & Sales</span>
+                    <h3>Wave / QuickBooks</h3>
+                    <p>Free or low-cost accounting tools that automatically generate reports — revenue, expenses, profit margins.</p>
+                </div>
+            </div>
+            <div class="tool-card">
+                <span class="tool-icon">🔗</span>
+                <div>
+                    <span class="tool-tag">Automation</span>
+                    <h3>Zapier / Make (free tier)</h3>
+                    <p>Automatically move data between your tools so nothing is entered twice — saving hours every week.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── REAL SCENARIOS ─────────────────────────────────────── -->
+<section class="hub-section alt" id="scenarios">
+    <div class="container">
+        <span class="section-label">Real Examples</span>
+        <h2>Businesses That Made the <em>Data Switch</em></h2>
+        <p class="sub">See the before-and-after difference data tracking makes for organisations like yours.</p>
+        <div class="cards-grid">
+            <div class="scenario-card card">
+                <p class="org">🏪 Retail SME — Katsina</p>
+                <h3>A shop owner tracks monthly stock vs. sales</h3>
+                <div class="before-after">
+                    <div class="ba-box before"><span class="ba-label">❌ Before</span>Overstocked slow-moving items, ran out of bestsellers, estimated losses monthly.</div>
+                    <div class="ba-box after"><span class="ba-label">✅ After</span>Reordered based on real sales trends. Cut waste by 30%, improved cash flow.</div>
+                </div>
+            </div>
+            <div class="scenario-card card">
+                <p class="org">🏫 School — Northern Nigeria</p>
+                <h3>A school tracks attendance and fee payment</h3>
+                <div class="before-after">
+                    <div class="ba-box before"><span class="ba-label">❌ Before</span>Paper registers, unknown defaulters, reactive intervention too late each term.</div>
+                    <div class="ba-box after"><span class="ba-label">✅ After</span>Digital tracker flagged at-risk students early. Fee collection improved 40%.</div>
+                </div>
+            </div>
+            <div class="scenario-card card">
+                <p class="org">🌍 NGO — Field Project</p>
+                <h3>An NGO collects beneficiary data consistently</h3>
+                <div class="before-after">
+                    <div class="ba-box before"><span class="ba-label">❌ Before</span>Narrative-only reports, donors questioned impact, grant renewal was difficult.</div>
+                    <div class="ba-box after"><span class="ba-label">✅ After</span>Dashboard with real metrics won a second grant cycle and expanded reach.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── DASHBOARD PREVIEW ──────────────────────────────────── -->
+<section class="hub-section" id="dashboards">
+    <div class="container">
+        <span class="section-label">See It in Action</span>
+        <h2>Your Business, <em>Visible at a Glance</em></h2>
+        <p class="sub">A simple dashboard gives you the numbers that matter — without digging through files and registers every morning.</p>
+        <div class="dash-mockup">
+            <div class="dash-kpis">
+                <div class="kpi"><div class="kpi-val">₦2.4M</div><div class="kpi-lbl">Monthly Revenue</div><div class="kpi-delta">↑ 12% vs last month</div></div>
+                <div class="kpi"><div class="kpi-val">348</div><div class="kpi-lbl">Customers Served</div><div class="kpi-delta">↑ 8% this week</div></div>
+                <div class="kpi"><div class="kpi-val">₦620K</div><div class="kpi-lbl">Operating Expenses</div><div class="kpi-delta">↓ 5% vs budget</div></div>
+                <div class="kpi"><div class="kpi-val">91%</div><div class="kpi-lbl">Payments Received</div><div class="kpi-delta">Up from 78%</div></div>
+            </div>
+            <div class="dash-bar-area">
+                <div class="dash-bar-title">Top Revenue Sources This Month</div>
+                <div class="bar-row"><span>Product A</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:linear-gradient(90deg,#00AAEF,#33BBFF)"></div></div><em>₦940K</em></div>
+                <div class="bar-row"><span>Service B</span><div class="bar-track"><div class="bar-fill" style="width:60%;background:linear-gradient(90deg,#C9972B,#E8B84B)"></div></div><em>₦660K</em></div>
+                <div class="bar-row"><span>Product C</span><div class="bar-track"><div class="bar-fill" style="width:45%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div><em>₦490K</em></div>
+                <div class="bar-row"><span>Consulting</span><div class="bar-track"><div class="bar-fill" style="width:28%;background:linear-gradient(90deg,#6366f1,#818cf8)"></div></div><em>₦310K</em></div>
+            </div>
+        </div>
+        <p style="text-align:center;margin-top:1.25rem;font-size:0.85rem;color:var(--text-l);">CloudSentinel builds dashboards like this for your actual business data. <a href="contact.html" style="color:var(--brand);font-weight:600;">Request a demo →</a></p>
+    </div>
+</section>
+
+<!-- ── FINAL CTA ──────────────────────────────────────────── -->
+<section class="cta-section" id="finalcta">
+    <div class="container">
+        <h2>Stop Guessing.<br>Start Making <em>Informed Decisions.</em></h2>
+        <p>CloudSentinel helps SMEs, NGOs, and institutions set up simple data systems that actually get used — and actually drive growth.</p>
+        <div class="cta-btns">
+            <a href="contact.html" class="btn-gold-solid">Get Data Support</a>
+            <a href="services.html" class="btn-outline-wh">Our Services</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="assets/logo.png" alt="CloudSentinel Technologies">
+                    <span>CloudSentinel</span>
+                </div>
+                <p class="footer-tagline">Securing Digital Futures Through Compliance, Cybersecurity & Smart Digital Solutions. Your trusted technology partner in Katsina, Nigeria.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Twitter"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html" class="footer-link">Home</a></li>
+                    <li><a href="about.html" class="footer-link">About Us</a></li>
+                    <li><a href="services.html" class="footer-link">Services</a></li>
+                    <li><a href="projects.html" class="footer-link">Projects</a></li>
+                    <li><a href="use-cases.html" class="footer-link">Use Cases</a></li>
+                    <li><a href="contact.html" class="footer-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-title">Knowledge Hub</h4>
+                <ul class="footer-links">
+                    <li><a href="cloudsentinel-digitalization.html" class="footer-link">Digital Transformation</a></li>
+                    <li><a href="cloudsentinel-cybersecurity.html" class="footer-link">Cybersecurity Awareness</a></li>
+                    <li><a href="cloudsentinel-data-insights.html" class="footer-link">Data for Decisions</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-title">Contact</h4>
+                <div class="footer-contact-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span>cloudsentinelng@gmail.com</span></div>
+                <div class="footer-contact-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><span>+234 9060713479 / +234 8117160515</span></div>
+                <div class="footer-contact-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span>Katsina, Nigeria</span></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">&copy; 2026 CloudSentinel Technologies. All rights reserved.</p>
+            <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

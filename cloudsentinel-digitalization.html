@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Digital Transformation Guide for SMEs — CloudSentinel Technologies. Why Nigerian businesses must go digital and how to start.">
+    <title>Digital Transformation | CloudSentinel Technologies</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        :root {
+            --brand: #00AAEF;
+            --brand-dark: #007EC4;
+            --gold: #C9972B;
+            --gold-lt: #E8B84B;
+            --text: #0B2032;
+            --text-m: #3A5870;
+            --text-l: #7AA0BB;
+            --off: #F5FAFF;
+            --border: rgba(0,170,239,.14);
+        }
+
+        .hub-bar-strip { background: #f0f7fc; border-bottom: 1px solid var(--border); padding: 0.55rem 0; margin-top: 70px; }
+        .hub-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+        .hub-back { display: flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; color: var(--text-l); }
+        .hub-back a { color: var(--brand-dark); text-decoration: none; font-weight: 500; }
+        .hub-back a:hover { color: var(--brand); }
+        .hub-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .hub-pill { font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0.75rem; border-radius: 999px; background: #fff; border: 1px solid rgba(0,170,239,.3); color: var(--brand-dark); text-decoration: none; transition: all 0.2s ease; }
+        .hub-pill:hover, .hub-pill.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+
+        /* Hero */
+        .hub-hero { background: linear-gradient(135deg, #003E6B 0%, #005A9E 50%, #00AAEF 100%); padding: 4.5rem 0 3.5rem; color: #fff; text-align: center; }
+        .hub-hero .badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 0.4rem 1rem; font-size: 0.8rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 1.25rem; }
+        .hub-hero h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+        .hub-hero h1 em { color: var(--gold-lt); font-style: normal; }
+        .hub-hero p { font-size: clamp(1rem, 2.5vw, 1.15rem); color: rgba(255,255,255,.85); max-width: 600px; margin: 0 auto 2rem; }
+        .hub-hero .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-wh { background: #fff; color: var(--brand-dark); font-weight: 600; padding: 0.75rem 1.75rem; border-radius: 8px; text-decoration: none; transition: all .2s; }
+        .btn-wh:hover { background: #e0f5fd; }
+        .btn-ol { border: 2px solid rgba(255,255,255,.5); color: #fff; font-weight: 600; padding: 0.75rem 1.75rem; border-radius: 8px; text-decoration: none; transition: all .2s; }
+        .btn-ol:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+
+        /* Sections */
+        .hub-section { padding: 4rem 0; }
+        .hub-section.alt { background: var(--off); }
+        .hub-section.dark { background: linear-gradient(135deg, #003E6B, #005A9E); color: #fff; }
+
+        .section-label { display: inline-block; background: rgba(0,170,239,.1); color: var(--brand-dark); border: 1px solid var(--border); border-radius: 999px; padding: 0.3rem 0.9rem; font-size: 0.75rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 0.75rem; }
+        .dark .section-label { background: rgba(255,255,255,.12); color: rgba(255,255,255,.8); border-color: rgba(255,255,255,.2); }
+
+        .hub-section h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; color: var(--text); margin-bottom: 0.75rem; line-height: 1.25; }
+        .dark h2 { color: #fff; }
+        .hub-section h2 em { color: var(--brand); font-style: normal; }
+        .dark h2 em { color: var(--gold-lt); }
+        .hub-section .sub { font-size: 1.05rem; color: var(--text-m); max-width: 640px; margin-bottom: 2.5rem; line-height: 1.6; }
+        .dark .sub { color: rgba(255,255,255,.75); }
+
+        /* Cards */
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+        .card { background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: box-shadow .25s, transform .25s; }
+        .card:hover { box-shadow: 0 8px 30px rgba(0,170,239,.12); transform: translateY(-3px); }
+        .card-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(0,170,239,.1); color: var(--brand); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+        .card-icon.gold { background: rgba(201,151,43,.1); color: var(--gold); }
+        .card-icon svg { width: 24px; height: 24px; }
+        .card h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+        .card p { font-size: 0.9rem; color: var(--text-m); line-height: 1.6; }
+
+        /* Pain points — alert style */
+        .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+        .pain-item { display: flex; gap: 0.75rem; align-items: flex-start; background: #fff; border-left: 3px solid #ef4444; border-radius: 0 10px 10px 0; padding: 1rem 1.25rem; }
+        .pain-icon { font-size: 1.25rem; flex-shrink: 0; }
+        .pain-item p { font-size: 0.9rem; color: var(--text-m); line-height: 1.5; margin: 0; }
+        .pain-item strong { display: block; color: var(--text); font-weight: 600; margin-bottom: 0.2rem; }
+
+        /* Steps (dark bg) */
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .step-card { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 14px; padding: 1.75rem; }
+        .step-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.5rem; font-weight: 800; color: rgba(255,255,255,.15); line-height: 1; margin-bottom: 0.5rem; }
+        .step-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+        .step-card p { font-size: 0.875rem; color: rgba(255,255,255,.75); line-height: 1.6; }
+
+        /* Comparison table */
+        .compare-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,170,239,.08); }
+        .compare-table thead { background: var(--brand); color: #fff; }
+        .compare-table thead th { padding: 1rem 1.25rem; text-align: left; font-size: 0.9rem; font-weight: 600; }
+        .compare-table tbody tr:nth-child(even) { background: var(--off); }
+        .compare-table tbody tr:nth-child(odd) { background: #fff; }
+        .compare-table td { padding: 0.85rem 1.25rem; font-size: 0.875rem; color: var(--text-m); border-bottom: 1px solid var(--border); }
+        .compare-table td:first-child { color: var(--text); font-weight: 500; }
+        .td-bad { color: #b91c1c; font-weight: 500; }
+        .td-good { color: #15803d; font-weight: 500; }
+
+        /* Services list */
+        .services-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+        .service-item { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 12px; padding: 1.25rem 1.5rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+        .service-item .si-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .service-item h3 { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; }
+        .service-item p { font-size: 0.83rem; color: rgba(255,255,255,.7); line-height: 1.5; }
+
+        /* CTA */
+        .cta-section { background: linear-gradient(135deg, #003E6B, #00AAEF); padding: 4rem 0; text-align: center; color: #fff; }
+        .cta-section h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin-bottom: 1rem; }
+        .cta-section h2 em { color: var(--gold-lt); font-style: normal; }
+        .cta-section p { color: rgba(255,255,255,.8); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; font-size: 1.05rem; }
+        .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-gold-solid { background: var(--gold); color: #fff; font-weight: 700; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; transition: all .2s; font-size: 0.95rem; }
+        .btn-gold-solid:hover { background: var(--gold-lt); color: var(--text); }
+        .btn-outline-wh { border: 2px solid rgba(255,255,255,.5); color: #fff; font-weight: 600; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; transition: all .2s; font-size: 0.95rem; }
+        .btn-outline-wh:hover { border-color: #fff; }
+
+        /* Footer */
+        .footer { background: #0D2A3E; color: rgba(255,255,255,.75); padding: 3rem 0 1.5rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 2rem; margin-bottom: 2rem; }
+        .footer-logo { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+        .footer-logo img { height: 40px; width: auto; }
+        .footer-logo span { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: #fff; font-size: 1.1rem; }
+        .footer-tagline { font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.25rem; }
+        .footer-social { display: flex; gap: 0.75rem; }
+        .social-link { width: 36px; height: 36px; background: rgba(255,255,255,.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.7); transition: all .2s; text-decoration: none; }
+        .social-link svg { width: 16px; height: 16px; }
+        .social-link:hover { background: var(--brand); color: #fff; }
+        .footer-title { font-weight: 700; color: #fff; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: .03em; text-transform: uppercase; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-link { color: rgba(255,255,255,.65); text-decoration: none; font-size: 0.875rem; transition: color .2s; }
+        .footer-link:hover { color: var(--brand); }
+        .footer-contact-item { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.75rem; font-size: 0.85rem; }
+        .footer-contact-item svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: .15rem; color: var(--brand); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+        .footer-copyright { font-size: 0.8rem; color: rgba(255,255,255,.5); }
+        .footer-legal { display: flex; gap: 1.5rem; }
+        .footer-legal a { font-size: 0.8rem; color: rgba(255,255,255,.5); text-decoration: none; }
+        .footer-legal a:hover { color: var(--brand); }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .hub-bar-inner { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .compare-table { display: block; overflow-x: auto; }
+        }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .hub-bar-strip { display: none; } }
+    </style>
+</head>
+
+<body>
+
+<!-- ── NAVBAR ────────────────────────────────────────────── -->
+<nav class="navbar scrolled" id="mainNav">
+    <div class="container">
+        <a href="index.html" class="nav-logo">
+            <img src="assets/logo.png" alt="CloudSentinel Technologies Logo">
+            <span class="nav-logo-text">CloudSentinel Technologies</span>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="services.html" class="nav-link">Services</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="use-cases.html" class="nav-link">Use Cases</a></li>
+            <li><a href="contact.html" class="btn btn-gold nav-cta">Contact Us</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="nav-overlay"></div>
+</nav>
+
+<!-- Hub breadcrumb bar -->
+<div class="hub-bar-strip">
+    <div class="container hub-bar-inner">
+        <span class="hub-back">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            <a href="index.html#awareness">Knowledge Hub</a>
+        </span>
+        <div class="hub-pills">
+            <a href="cloudsentinel-digitalization.html" class="hub-pill active">🚀 Digital Transformation</a>
+            <a href="cloudsentinel-cybersecurity.html" class="hub-pill">🛡️ Cybersecurity</a>
+            <a href="cloudsentinel-data-insights.html" class="hub-pill">📊 Data Insights</a>
+        </div>
+    </div>
+</div>
+
+<!-- ── HERO ──────────────────────────────────────────────── -->
+<section class="hub-hero">
+    <div class="container">
+        <div class="badge">🚀 Digital Transformation Guide · Nigeria</div>
+        <h1>Why Digital Transformation<br><em>Matters for Your Business</em></h1>
+        <p>Going digital is not about gadgets — it is about staying competitive, serving customers better, and building a business that lasts.</p>
+        <div class="hero-btns">
+            <a href="#why" class="btn-wh">Why It Matters →</a>
+            <a href="#steps" class="btn-ol">How to Start</a>
+        </div>
+    </div>
+</section>
+
+<!-- ── PAIN POINTS ───────────────────────────────────────── -->
+<section class="hub-section alt" id="pain">
+    <div class="container">
+        <span class="section-label">The Problem</span>
+        <h2>Does Any of This Sound <em>Familiar?</em></h2>
+        <p class="sub">These are the everyday struggles that hold Nigerian SMEs, schools, and NGOs back — and all of them have a digital solution.</p>
+        <div class="pain-grid">
+            <div class="pain-item"><span class="pain-icon">📄</span><div><strong>Too much paperwork</strong><p>Records get lost, forms take hours to process, and tracking anything manually eats into your day.</p></div></div>
+            <div class="pain-item"><span class="pain-icon">💸</span><div><strong>Can't track cash flow</strong><p>Money comes in and goes out but you never know your actual profit until it is too late.</p></div></div>
+            <div class="pain-item"><span class="pain-icon">📞</span><div><strong>Losing customers to competitors</strong><p>Customers choose businesses they can find online, book easily, and pay through their phone.</p></div></div>
+            <div class="pain-item"><span class="pain-icon">🔁</span><div><strong>Repeating the same manual tasks</strong><p>Staff spend hours on tasks that a simple tool could do automatically — every single day.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ── WHAT IT MEANS ─────────────────────────────────────── -->
+<section class="hub-section" id="why">
+    <div class="container">
+        <span class="section-label">What It Really Means</span>
+        <h2>Digital Transformation Is Not About <em>Technology</em> — It's About Results</h2>
+        <p class="sub">Digitalisation means using the right tools to serve customers faster, run your operations smarter, and grow with less friction. Here is what it looks like in practice.</p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+                <h3>Speed & Efficiency</h3>
+                <p>Automate invoicing, inventory, and scheduling so your team focuses on growth, not repetitive admin.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg></div>
+                <h3>Wider Reach</h3>
+                <p>A website, social media presence, or online marketplace puts your business in front of customers beyond your local area.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+                <h3>Trust & Credibility</h3>
+                <p>A registered, compliant, digitally-present business earns more trust from customers, partners, and government agencies.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon gold"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                <h3>Cost Savings</h3>
+                <p>Digital tools reduce printing, storage, manual errors, and wasted stock — cutting real operating costs over time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── COMPARISON ────────────────────────────────────────── -->
+<section class="hub-section alt" id="compare">
+    <div class="container">
+        <span class="section-label">Side by Side</span>
+        <h2>Manual vs. <em>Digital Operations</em></h2>
+        <p class="sub">The difference between running a business on paper and running it digitally compounds over time.</p>
+        <table class="compare-table">
+            <thead>
+                <tr><th>Business Area</th><th>❌ Manual / Traditional</th><th>✅ Digital / Automated</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Record Keeping</td><td class="td-bad">Paper files, easy to lose or damage</td><td class="td-good">Cloud-stored, searchable, accessible anywhere</td></tr>
+                <tr><td>Invoicing & Payments</td><td class="td-bad">Handwritten, slow to follow up</td><td class="td-good">Automated reminders, instant payment links</td></tr>
+                <tr><td>Customer Communication</td><td class="td-bad">Phone calls only, hard to track</td><td class="td-good">WhatsApp Business, email, or CRM — all logged</td></tr>
+                <tr><td>Inventory</td><td class="td-bad">Manual count, frequent errors</td><td class="td-good">Real-time tracking, low-stock alerts</td></tr>
+                <tr><td>Financial Reporting</td><td class="td-bad">End-of-month headache, often guessed</td><td class="td-good">Automatic reports, profit visible weekly</td></tr>
+                <tr><td>Marketing</td><td class="td-bad">Word-of-mouth only, limited reach</td><td class="td-good">Social media, online listings, measurable reach</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- ── HOW TO START ───────────────────────────────────────── -->
+<section class="hub-section dark" id="steps">
+    <div class="container">
+        <span class="section-label">Getting Started</span>
+        <h2>Your <em>Digital Transformation</em> Roadmap</h2>
+        <p class="sub">You do not have to do everything at once. Start with what gives you the most immediate benefit.</p>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">01</div>
+                <h3>Get Registered</h3>
+                <p>CAC registration, TIN, and SCUML (where required) give your business legal standing and open doors to banking, grants, and contracts.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">02</div>
+                <h3>Build an Online Presence</h3>
+                <p>A simple website or Google Business profile makes you findable. Customers research online before they buy — be where they look.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">03</div>
+                <h3>Digitise Your Records</h3>
+                <p>Move sales, expenses, and customer data into a spreadsheet or simple accounting tool. Visibility is the first step to control.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">04</div>
+                <h3>Accept Digital Payments</h3>
+                <p>Add bank transfer, POS, or QR payment options. Businesses that make it easy to pay collect faster and lose fewer sales.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">05</div>
+                <h3>Automate One Process</h3>
+                <p>Pick one repetitive task — invoicing, stock alerts, or appointment booking — and automate it. Then build from there.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── HOW CLOUDSENTINEL HELPS ────────────────────────────── -->
+<section class="hub-section" id="role">
+    <div class="container">
+        <span class="section-label">Our Services</span>
+        <h2>How <em>CloudSentinel</em> Walks With You Every Step</h2>
+        <p class="sub">We do not just advise — we implement. From registration to custom software, we handle the technical side so you can focus on your business.</p>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+                <h3>Compliance & Registration</h3>
+                <p>CAC, TIN, NIN, SCUML — we handle the paperwork so your business is properly registered and legally protected.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg></div>
+                <h3>Web & App Development</h3>
+                <p>Professional websites, business management apps, and online marketplaces — built for Nigerian SMEs and NGOs.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
+                <h3>Data & Analytics Setup</h3>
+                <p>We build dashboards and data systems that give you clear visibility into your numbers — weekly, not end-of-year.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg></div>
+                <h3>Cybersecurity Basics</h3>
+                <p>We secure your new digital setup from day one — so your growth does not create new vulnerabilities.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── FINAL CTA ──────────────────────────────────────────── -->
+<section class="cta-section" id="finalcta">
+    <div class="container">
+        <h2>Don't Let Your Business<br><em>Stay Behind.</em></h2>
+        <p>CloudSentinel Technologies helps SMEs, NGOs, schools and institutions go digital — at a pace and cost that works for you.</p>
+        <div class="cta-btns">
+            <a href="contact.html" class="btn-gold-solid">Start Your Digital Journey</a>
+            <a href="services.html" class="btn-outline-wh">Our Services</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="assets/logo.png" alt="CloudSentinel Technologies">
+                    <span>CloudSentinel</span>
+                </div>
+                <p class="footer-tagline">Securing Digital Futures Through Compliance, Cybersecurity & Smart Digital Solutions. Your trusted technology partner in Katsina, Nigeria.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Twitter"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html" class="footer-link">Home</a></li>
+                    <li><a href="about.html" class="footer-link">About Us</a></li>
+                    <li><a href="services.html" class="footer-link">Services</a></li>
+                    <li><a href="projects.html" class="footer-link">Projects</a></li>
+                    <li><a href="use-cases.html" class="footer-link">Use Cases</a></li>
+                    <li><a href="contact.html" class="footer-link">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-title">Knowledge Hub</h4>
+                <ul class="footer-links">
+                    <li><a href="cloudsentinel-digitalization.html" class="footer-link">Digital Transformation</a></li>
+                    <li><a href="cloudsentinel-cybersecurity.html" class="footer-link">Cybersecurity Awareness</a></li>
+                    <li><a href="cloudsentinel-data-insights.html" class="footer-link">Data for Decisions</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4 class="footer-title">Contact</h4>
+                <div class="footer-contact-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span>cloudsentinelng@gmail.com</span></div>
+                <div class="footer-contact-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg><span>+234 9060713479 / +234 8117160515</span></div>
+                <div class="footer-contact-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><span>Katsina, Nigeria</span></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copyright">&copy; 2026 CloudSentinel Technologies. All rights reserved.</p>
+            <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+        </div>
+    </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
