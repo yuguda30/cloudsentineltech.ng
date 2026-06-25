@@ -1,0 +1,235 @@
+# ============================================================
+#  CloudSentinel Technologies — .gitignore
+#
+#  PURPOSE:
+#  This file tells Git which files and folders to EXCLUDE
+#  from version control. Files listed here will NOT be
+#  uploaded to GitHub, protecting sensitive configuration,
+#  private assets, and internal business documents.
+#
+#  IMPORTANT: Adding a file here does NOT remove it if it
+#  was already committed. To remove a previously committed
+#  file, run:
+#    git rm --cached <filename>
+#    git commit -m "Remove sensitive file from tracking"
+# ============================================================
+
+
+# ── Private Configuration & Environment ─────────────────────
+# Any .env files containing API keys, tokens, or credentials
+.env
+.env.local
+.env.production
+.env.staging
+*.env
+
+# Configuration files with private values
+config.private.js
+config.local.js
+secrets.json
+credentials.json
+
+
+# ── Internal Business Documents ──────────────────────────────
+# Company profiles, proposals, contracts — keep off GitHub
+docs/private/
+internal/
+contracts/
+proposals/
+financials/
+*.docx
+*.xlsx
+*.pdf
+*.pptx
+
+
+# ── Client & Partner Data ────────────────────────────────────
+# Never version control client information
+clients/
+partners/private/
+crm/
+*.csv
+*.sqlite
+*.db
+
+
+# ── Private Assets & Brand Files ─────────────────────────────
+# Source design files (Figma exports, raw logo files, etc.)
+*.psd
+*.ai
+*.fig
+*.xd
+*.sketch
+design-source/
+brand-assets/private/
+
+# High-resolution originals — serve optimised versions only
+public/assets/originals/
+public/assets/raw/
+
+
+# ── Placeholder & Development-only Files ─────────────────────
+# Remove before going live — these expose the dev stack
+public/placeholder*.jpg
+public/placeholder*.png
+public/placeholder*.svg
+public/test-*
+public/dev-*
+*.test.html
+*.draft.html
+
+
+# ── Analytics & Tracking Config ──────────────────────────────
+# Keep tracking IDs and measurement IDs private
+analytics.config.js
+gtm-config.js
+
+
+# ── Node / Build Tools (if used later) ───────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+dist/
+build/
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vite/
+
+
+# ── macOS System Files ───────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+# ── Windows System Files ─────────────────────────────────────
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+
+# ── Linux System Files ───────────────────────────────────────
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+
+# ── IDE & Editor Files ───────────────────────────────────────
+# VS Code — keep workspace settings private, not shared
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/*.code-workspace
+!.vscode/extensions.json
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim / Neovim
+*.swp
+*.swo
+*.swn
+Session.vim
+.netrwhist
+
+# Emacs
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+
+# ── Logs & Debugging ─────────────────────────────────────────
+logs/
+*.log
+npm-debug.log
+server.log
+error.log
+access.log
+
+
+# ── Backup & Temporary Files ─────────────────────────────────
+*.bak
+*.backup
+*.orig
+*.tmp
+*.temp
+*.old
+~$*
+.sass-cache/
+*.css.map
+*.js.map
+
+
+# ── Security-Sensitive Files ─────────────────────────────────
+# SSL certificates — never commit these
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.csr
+
+# SSH keys
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+known_hosts
+
+
+# ── Deployment & Hosting Config ──────────────────────────────
+# FTP credentials and deploy configs
+.ftpconfig
+.ftppass
+deploy.config.js
+deploy-config.json
+sftp.json
+.netlify/
+vercel.json
+# Note: keep CNAME if using GitHub Pages custom domain
+# CNAME is intentionally NOT ignored
+
+
+# ── Future Backend / API (when added) ────────────────────────
+server/private/
+api/keys/
+api/config/
+*.secret.js
+
+
+# ============================================================
+#  FILES INTENTIONALLY TRACKED (NOT ignored)
+#
+#  The following are committed to the repo and served by
+#  GitHub Pages. They are public by design while the site
+#  is on GitHub Pages infrastructure.
+#
+#  public/index.html
+#  public/css/style.css
+#  public/js/main.js
+#  public/assets/logo.png
+#  public/assets/*.jpg  (partner logos — all cleared for use)
+#  All other public/*.html pages
+#  README.md
+#  CNAME (when custom domain is configured)
+# ============================================================
