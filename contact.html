@@ -13,27 +13,48 @@
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="nav-logo">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Blue%20Illustration%20Cloud%20Business%20Logo_20251208_170044_0000-C7gBRRzGwJYC0VHHKi5ydbqPg0zPj4.png" alt="CloudSentinel Technologies Logo" class="logo-img">
-            </a>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="services.html" class="nav-link">Services</a></li>
-                <li><a href="projects.html" class="nav-link">Projects</a></li>
-                <li><a href="use-cases.html" class="nav-link">Use Cases</a></li>
-                <li><a href="contact.html" class="nav-link active">Contact</a></li>
-            </ul>
+  <!-- ── NAVBAR ─────────────────────────────────────────── -->
+<nav class="navbar scrolled" id="mainNav">
+    <div class="container">
+        <a href="index.html" class="nav-logo">
+            <img src="assets/logo.png" alt="CloudSentinel Technologies Logo">
+            <span class="nav-logo-text">CloudSentinel Technologies</span>
+        </a>
+
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="services.html" class="nav-link">Services</a></li>
+            <li><a href="projects.html" class="nav-link">Projects</a></li>
+            <li><a href="use-cases.html" class="nav-link">Use Cases</a></li>
+            <li><a href="contact.html" class="btn btn-gold nav-cta active">Contact Us</a></li>
+        </ul>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    <div class="nav-overlay"></div>
+</nav>
+
+<!-- Hub breadcrumb bar (keeps page context for users) -->
+<div class="hub-bar-strip">
+    <div class="container hub-bar-inner">
+        <span class="hub-back">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            <a href="index.html#awareness">Knowledge Hub</a>
+        </span>
+        <div class="hub-pills">
+            <a href="cloudsentinel-digitalization.html" class="hub-pill">🚀 Digital Transformation</a>
+            <a href="cloudsentinel-cybersecurity.html" class="hub-pill">🛡️ Cybersecurity</a>
+            <a href="cloudsentinel-data-insights.html" class="hub-pill">📊 Data Insights</a>
         </div>
-    </nav>
+    </div>
+</div>
 
     <!-- Page Header -->
     <section class="page-header">
