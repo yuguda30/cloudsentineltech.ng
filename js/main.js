@@ -1,6 +1,14 @@
 /* ===================================
    CloudSentinel Technologies
-   Main JavaScript File
+   Main JavaScript File — PATCHED VERSION
+   
+   INSTRUCTIONS:
+   This file REPLACES your existing js/main.js entirely.
+   Changes from original:
+   - Added initDarkMode() to DOMContentLoaded
+   - Added initDarkMode() function (bottom of file)
+   - Added initFAQ() for contact page accordion
+   - All other functions unchanged
    =================================== */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -10,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
   initSmoothScroll();
   initCounterAnimation();
   initContactForm();
+  initDarkMode();    /* ← NEW */
+  initFAQ();         /* ← NEW */
 });
 
 /* ===================================
@@ -307,6 +317,102 @@ function initContactForm() {
     form.innerHTML = '';
     form.appendChild(successMessage);
   }
+}
+
+/* ===================================
+   FAQ Accordion (contact page)
+   =================================== */
+function initFAQ() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  if (faqItems.length === 0) return;
+
+  faqItems.forEach(function(item) {
+    const question = item.querySelector('.faq-question');
+    if (!question) return;
+
+    question.addEventListener('click', function() {
+      const isActive = item.classList.contains('active');
+
+      // Close all
+      faqItems.forEach(function(i) { i.classList.remove('active'); });
+
+      // Open clicked if it wasn't already open
+      if (!isActive) { item.classList.add('active'); }
+    });
+  });
+}
+
+/* ===================================
+   Dark Mode — Night Mode Toggle
+   =================================== */
+function initDarkMode() {
+  const html = document.documentElement;
+  const STORAGE_KEY = 'cs-theme';
+
+  /* --- Build the sun/moon toggle button --- */
+  const btn = document.createElement('button');
+  btn.className = 'theme-toggle';
+  btn.setAttribute('aria-label', 'Toggle dark mode');
+  btn.innerHTML = `
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+      fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+      fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  `;
+
+  /* --- Insert button before the hamburger toggle --- */
+  const navbarContainer = document.querySelector('.navbar .container');
+  const navToggle = document.querySelector('.nav-toggle');
+  if (navbarContainer && navToggle) {
+    navbarContainer.insertBefore(btn, navToggle);
+  }
+
+  /* --- Apply saved or system preference on load --- */
+  const saved = localStorage.getItem(STORAGE_KEY);
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (saved === 'dark' || (!saved && prefersDark)) {
+    html.setAttribute('data-theme', 'dark');
+  } else {
+    html.removeAttribute('data-theme');
+  }
+
+  /* --- Toggle on click --- */
+  btn.addEventListener('click', function() {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      html.removeAttribute('data-theme');
+      localStorage.setItem(STORAGE_KEY, 'light');
+    } else {
+      html.setAttribute('data-theme', 'dark');
+      localStorage.setItem(STORAGE_KEY, 'dark');
+    }
+  });
+
+  /* --- Sync across tabs --- */
+  window.addEventListener('storage', function(e) {
+    if (e.key === STORAGE_KEY) {
+      if (e.newValue === 'dark') {
+        html.setAttribute('data-theme', 'dark');
+      } else {
+        html.removeAttribute('data-theme');
+      }
+    }
+  });
 }
 
 /* ===================================
