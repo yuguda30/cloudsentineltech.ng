@@ -73,7 +73,7 @@ const TRANSLATIONS = {
         hero_title_1: "Tabbatar da Makomar Dijital",
         hero_title_2: "Ta Hanyar Bin Doka,",
         hero_title_3: "Tsaron Yanar Gizo",
-        hero_title_4: "& Hanyoyin Dijital Masu Wayo",
+        hero_title_4: "& Hanyoyin Dijital Masu sauki",
         hero_desc: "CloudSentinel Technologies tana taimaka wa SMEs, NGOs, makarantu, da cibiyoyi su bi doka, su zama masu tsaro, su yi amfani da bayanai, kuma su yi aiki ta hanyar dijital a Katsina, Najeriya da kuma sauran wurare.",
         hero_btn_services: "Duba Ayyukanmu",
         hero_btn_consult: "Fara Tattaunawa",
