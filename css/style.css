@@ -3851,3 +3851,195 @@ a:focus-visible, button:focus-visible {
     font-weight: 800;
     letter-spacing: -0.02em;
 }
+
+
+/* ============================================================
+   CS FIXES v3 — CIRCULAR LOGO + LANGUAGE SWITCHER
+   ============================================================ */
+
+/* ── 1. LOGO — force perfect circle everywhere ──────────────
+   Overrides all earlier rules (cascade — these come last) */
+.nav-logo img {
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid rgba(255,255,255,0.25);
+    background: #fff;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+    flex-shrink: 0;
+}
+.navbar.scrolled .nav-logo img {
+    border-color: rgba(0,170,239,0.3);
+}
+.nav-logo:hover img {
+    transform: rotate(8deg) scale(1.04);
+    border-color: var(--gold);
+}
+
+.footer-logo img {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid rgba(0,170,239,0.3);
+    background: #fff;
+    flex-shrink: 0;
+}
+
+/* Hub page navbar logo (inline-style pages) — same circular treatment */
+.navbar .nav-logo img,
+nav .nav-logo img {
+    border-radius: 50% !important;
+    object-fit: cover !important;
+}
+
+[data-theme="dark"] .nav-logo img { border-color: rgba(0,170,239,0.25); background: #0f1923; }
+[data-theme="dark"] .footer-logo img { border-color: rgba(0,170,239,0.25); background: #0f1923; }
+
+
+/* ============================================================
+   2. LANGUAGE SWITCHER — dropdown UI
+   ============================================================ */
+
+.lang-switcher {
+    position: relative;
+    flex-shrink: 0;
+}
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    height: 40px;
+    padding: 0 0.75rem;
+    border-radius: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(10px);
+}
+.navbar.scrolled .lang-toggle {
+    border-color: rgba(0,170,239,0.3);
+    color: var(--primary);
+    background: rgba(0,170,239,0.07);
+}
+.lang-toggle:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #fff;
+}
+.lang-toggle svg.globe { width: 15px; height: 15px; }
+.lang-toggle svg.caret {
+    width: 10px; height: 10px;
+    transition: transform 0.2s ease;
+}
+.lang-switcher.open .lang-toggle svg.caret { transform: rotate(180deg); }
+
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 170px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 12px 36px rgba(0,30,60,0.18), 0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,170,239,0.12);
+    padding: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.22s ease;
+    z-index: 1100;
+}
+.lang-switcher.open .lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.lang-option {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: left;
+    transition: background 0.18s ease;
+}
+.lang-option:hover { background: rgba(0,170,239,0.07); }
+.lang-option.active {
+    background: rgba(0,170,239,0.1);
+    color: var(--primary);
+    font-weight: 700;
+}
+.lang-option .flag {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #fff;
+    flex-shrink: 0;
+}
+.lang-option .check {
+    margin-left: auto;
+    width: 16px; height: 16px;
+    color: var(--primary);
+    display: none;
+}
+.lang-option.active .check { display: block; }
+
+/* Flag color codes per language */
+.flag-en { background: linear-gradient(135deg, #00AAEF, #007EC4); }
+.flag-ha { background: linear-gradient(135deg, #C9972B, #A87520); }
+.flag-yo { background: linear-gradient(135deg, #16a34a, #15803d); }
+.flag-ig { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+
+[data-theme="dark"] .lang-dropdown {
+    background: #19273a;
+    border-color: rgba(0,170,239,0.18);
+}
+[data-theme="dark"] .lang-option { color: var(--text-primary); }
+[data-theme="dark"] .lang-option:hover { background: rgba(0,170,239,0.1); }
+[data-theme="dark"] .lang-option.active { background: rgba(0,170,239,0.15); }
+
+/* Mobile: language switcher sits inline before hamburger */
+@media (max-width: 968px) {
+    .lang-toggle {
+        height: 36px;
+        padding: 0 0.6rem;
+        font-size: 0.78rem;
+    }
+    .lang-dropdown {
+        right: -10px;
+        min-width: 160px;
+    }
+}
+@media (max-width: 480px) {
+    .lang-toggle span.lang-label { display: none; }
+    .lang-toggle { width: 36px; padding: 0; justify-content: center; border-radius: 50%; }
+}
+
+/* Translatable text fade transition */
+[data-i18n] {
+    transition: opacity 0.15s ease;
+}
+.i18n-fading [data-i18n] {
+    opacity: 0.4;
+}
